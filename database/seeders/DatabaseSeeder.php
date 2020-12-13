@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             SlidersSeeder::class,
             RecommendedProductsSeeder::class,
             MainPageCategoriesSeeder::class,
-            CategoriesSeeder::class
+            CategoriesSeeder::class,
+            ImagesSeeder::class,
+            ProductsSeeder::class
         ]);
 
     }

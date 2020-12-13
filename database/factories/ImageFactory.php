@@ -32,8 +32,6 @@ class ImageFactory extends Factory
             '/images/products/product-8.jpg',
         ];
 
-
-
         return [
             'title' => $this->faker->randomElement($imagesPath),
             'product_id' => $this->faker->randomNumber(2),

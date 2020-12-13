@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\SlidersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('sliders', 'SlidersController@index');
+
+Route::prefix('api')->group(function () {
+
+    Route::get('sliders', [SlidersController::class, 'index']);
+
+
+
+});
