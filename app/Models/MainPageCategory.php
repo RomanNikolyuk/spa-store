@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class MainPageCategory extends Model
 {
     use HasFactory;
 
-    public function images()
+    public $table = 'mainpage_categories';
+
+    public function category()
     {
-        return $this->hasMany(Image::class);
+        return $this->belongsTo(Category::class);
     }
 }

@@ -13,4 +13,7 @@ class Slider extends Model
         return $this->hasOne(Image::class);
     }
 
+    public function getImageAttribute() {
+        return $this->image()->first()->title;
+    }
 }

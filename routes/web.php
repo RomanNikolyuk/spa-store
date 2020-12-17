@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SlidersController;
+use App\Http\Controllers\MainPageProductsController;
+
+use App\Http\Controllers\MainPageCategoriesController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +21,13 @@ use App\Http\Controllers\SlidersController;
 
 Route::prefix('api')->group(function () {
 
-    Route::get('sliders', [SlidersController::class, 'index']);
+    Route::get('sliders', [SlidersController::class, 'api']);
 
+    Route::get('main-page-products', [MainPageProductsController::class, 'api']);
 
+    Route::get('main-page-categories', [MainPageCategoriesController::class, 'api']);
 
+    Route::get('products', [ProductsController::class, 'api']);
+
+    Route::get('product', [ProductController::class, 'api']);
 });

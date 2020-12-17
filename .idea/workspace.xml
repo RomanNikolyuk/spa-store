@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Components/CollectionPaginator/CollectionPaginator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MainPageCategoriesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MainPageProductsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/MainPageCategory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/RecommendedProducts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SlidersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SlidersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ImageFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ImageFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/ImagesSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/ImagesSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/git/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/git/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mykyta-project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Slider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +33,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -142,11 +148,15 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1lTzd4EHI4tC2ivblUSjlMmLXab" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/git" />
@@ -178,11 +188,15 @@
       <updated>1607635952558</updated>
       <workItem from="1607635953589" duration="21640000" />
       <workItem from="1607892642601" duration="62000" />
-      <workItem from="1607892820159" duration="318000" />
+      <workItem from="1607892820159" duration="8089000" />
+      <workItem from="1608235140851" duration="5118000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
