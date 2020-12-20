@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Components\CollectionPaginator;
+namespace App\Components;
 use Illuminate\Pagination\Paginator as DefaultPaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;

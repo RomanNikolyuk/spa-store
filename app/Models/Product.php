@@ -13,4 +13,20 @@ class Product extends Model
     {
         return $this->hasMany(Image::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getImagesAttribute()
+    {
+        $images = $this->images()->get();
+
+        foreach ($images as $image) {
+            $return[] = $image->title;
+        }
+
+        return $return;
+    }
 }

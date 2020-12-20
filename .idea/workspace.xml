@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Components/CollectionPaginator/CollectionPaginator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MainPageCategoriesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MainPageProductsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/MainPageCategory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/RecommendedProducts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SlidersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SlidersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Components/CollectionPaginator/CollectionPaginator.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Components/CollectionPaginator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MainPageCategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MainPageProductsController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Slider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,6 +167,9 @@
       <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\products" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\categories" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\Documents\Laravel\files\mykyta-project\app\Components" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -189,7 +188,8 @@
       <workItem from="1607635953589" duration="21640000" />
       <workItem from="1607892642601" duration="62000" />
       <workItem from="1607892820159" duration="8089000" />
-      <workItem from="1608235140851" duration="5118000" />
+      <workItem from="1608235140851" duration="7315000" />
+      <workItem from="1608323663871" duration="11267000" />
     </task>
     <servers />
   </component>
