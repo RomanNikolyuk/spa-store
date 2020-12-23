@@ -100,7 +100,7 @@ class ProductsController extends Controller
                 // Якщо продукту за id не існує - удалить запис нахуй
                 if (! is_null($product)) {
 
-                    $product->image = $product->images->first()->title ?? null;
+                    $product->image = $product->images->title ?? null;
 
                     $product->type = 'recommended';
 
@@ -114,7 +114,7 @@ class ProductsController extends Controller
             $new_products = Product::limit(8)->orderBy('id', 'DESC')->get();
 
             foreach ($new_products as $new_product) {
-                $new_product->image = $new_product->images->first()->title ?? null;
+                $new_product->image = $new_product->images->title ?? null;
 
                 $new_product->type = 'new';
 

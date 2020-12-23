@@ -27,6 +27,7 @@ class Product extends Model
             $return[] = $image->title;
         }
 
+
         return $return;
     }
 }
