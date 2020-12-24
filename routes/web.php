@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\SlidersController;
-
-use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
-
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,16 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
+
+Route::prefix('admin')->middleware('auth')->group(function () {
+
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    Route::get('dashboard/{id}', [DashboardController::class, 'view'])->name('dashboard.view');
+    Route::post('dashboard/{id}', [DashboardController::class, 'changeStatus'])->name('dashboard.changeStatus');
+});
+
+require __DIR__.'/auth.php';
 
 Route::prefix('api')->group(function () {
 
