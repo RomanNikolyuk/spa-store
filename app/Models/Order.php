@@ -20,15 +20,6 @@ class Order extends Model
         }
     }
 
-    /*
-     * Отримання кількості продуктів, що мають такий же status. Неодхідний у dashboard.blade
-     */
-
-    public function getCountAttribute()
-    {
-        return self::where('status', $this->status)->count();
-    }
-
     public function products()
     {
         return $this->belongsToMany(Product::class);

@@ -10,7 +10,9 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $orders = Order::paginate(15);
+        $orders = Order::orderBy('updated_at', 'desc')->paginate(15);
+
+        $orders->newCount = Order::where('status', 1)->count();
 
         return view('dashboard.dashboard')->with('orders', $orders);
     }
@@ -22,15 +24,22 @@ class DashboardController extends Controller
         return view('dashboard.view_order')->with('order', $order);
     }
 
-    public function changeStatus($id)
+    public function changeStatus(Request $request, $id)
     {
         $order = Order::find($id);
 
-        if ($order->status == 1) {
-            $order->status = 2;
+        if ($request->isMethod('post')) {
+            if ($order->status == 1 || $order->status == 0) {
+                $order->status = 2;
+            } else {
+                $order->status = 0;
+            }
         } else {
-            $order->status = 0;
+            if ($request->has('cancel')) {
+                $order->status = 0;
+            }
         }
+
 
         $order->update();
 

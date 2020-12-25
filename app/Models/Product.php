@@ -19,6 +19,21 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function getCategoryNameAttribute()
+    {
+        $searched_cat = Category::find($this->category_id);
+
+        if ($searched_cat->parent_id !== 0) {
+            $parent_cat = Category::find($searched_cat->parent_id);
+            $output = $parent_cat->title . ' -> ' . $searched_cat->title;
+        } else {
+            $output = $searched_cat->title;
+        }
+
+        return $output;
+
+    }
+
     public function getImagesAttribute()
     {
         $images = $this->images()->get();

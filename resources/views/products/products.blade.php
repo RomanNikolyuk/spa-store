@@ -1,12 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Привіт!
-            @if($orders->newCount > 0)
-                Здається, з'явилися нові замовлення 😉
-            @else
-                Нових замовлень немає, проте я обов'язково Вас сповіщу, як тільки щось з'явиться 😁
-            @endif
+            Менеджер продуктів
         </h2>
     </x-slot>
 
@@ -38,7 +33,8 @@
                         </div>
                     </div>
                 </div>
-                @if($orders->count() > 0)
+
+                @if($products->count() > 0)
                     <div
                         class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
                         <table class="min-w-full">
@@ -48,82 +44,57 @@
                                     ID
                                 </th>
                                 <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                                    Ім'я
+                                    Заголовок
                                 </th>
                                 <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                                    Прізвище
+                                    Короткий опис
                                 </th>
 
                                 <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                                    Статус
+                                    Категорія
                                 </th>
 
                                 <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                                    Продукти
+                                    Ціна
                                 </th>
 
-                                <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                                    Час замовлення
-                                </th>
                                 <th class="px-6 py-3 border-b-2 border-gray-300"></th>
                             </tr>
                             </thead>
                             <tbody class="bg-white">
 
-                            @foreach($orders as $order)
+                            @foreach($products as $product)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                         <div class="flex items-center">
                                             <div>
-                                                <div class="text-sm leading-5 text-gray-800">#{{ $order->id }}</div>
+                                                <div class="text-sm leading-5 text-gray-800">#{{ $product->id }}</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                        <div class="text-sm leading-5 text-blue-900">{{ $order->first_name }}</div>
+                                        <div class="text-sm leading-5 text-blue-900">{{ $product->title }}</div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                                        <div class="text-sm leading-5 text-blue-900">{{ $order->last_name }}</div>
+                                        <div class="text-sm leading-5 text-blue-900">{{ Str::limit($product->small_desc, 25) }}</div>
                                     </td>
 
 
                                     <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                                        <span
-                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                              class="absolute inset-0 bg-{{ $order->statusColor }}-200 opacity-50 rounded-full"></span>
-                                        <span class="relative text-xs">
-                                            @if($order->status === 2)
-                                                Оброблене
-                                            @elseif($order->status === 1)
-                                                Очікує
-                                            @else
-                                                Відхилене
-                                            @endif
-                                        </span>
-                                    </span>
-                                    </td>
-
-                                    @var($sum, 0)
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                                        @foreach($order->products as $product)
-                                            {{ $product->title }}; <br>
-                                            @var($sum, $sum+$product->price)
-                                        @endforeach
-                                        Сума замовлення: {{ $sum }}
+                                        <div class="text-sm leading-5 text-blue-900">{{ $product->category_name }}</div>
                                     </td>
 
 
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                                        {{ mb_convert_case($order->created_at->locale('uk')->monthName, MB_CASE_TITLE) . ', ' . $order->created_at->day }}
+                                        <div class="text-sm leading-5 text-blue-900">{{ $product->price }}</div>
                                     </td>
 
 
                                     <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                        <a href="{{ route('dashboard.view', $order->id) }}"
-                                            class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
-                                            Переглянути 👁
+                                        <a href="{{ route('products.view', $product->id) }}"
+                                           class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
+                                            Змінити ✍
                                         </a>
                                     </td>
                                 </tr>
@@ -136,19 +107,19 @@
                             <div>
                                 <p class="text-sm leading-5 text-blue-700">
                                     Показуємо від
-                                    <span class="font-medium">{{ $orders->first()->id }}</span>
+                                    <span class="font-medium">{{ $products->first()->id }}</span>
                                     до
-                                    <span class="font-medium">{{ $orders->last()->id }}</span>
+                                    <span class="font-medium">{{ $products->last()->id }}</span>
                                     із
-                                    <span class="font-medium">{{ $orders->count() }}</span>
+                                    <span class="font-medium">{{ $products->count() }}</span>
                                     замовлень
                                 </p>
                             </div>
                             <div>
                                 <nav class="relative z-0 inline-flex shadow-sm">
-                                    @if($orders->currentPage() > 1)
-                                        <div v-if="$orders.current_page > 1">
-                                            <a href="{{ route('dashboard').'?page='.($orders->currentPage()-1) }}"
+                                    @if($products->currentPage() > 1)
+                                        <div v-if="$products.current_page > 1">
+                                            <a href="{{ route('products').'?page='.($products->currentPage()-1) }}"
                                                class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
                                                aria-label="Previous"
                                                v-on:click.prevent="changePage(pagination.current_page - 1)">
@@ -161,18 +132,18 @@
                                         </div>
                                     @endif
                                     <div>
-                                        @if($orders->lastPage() > 1)
-                                            @for($i = 1; $i <= $orders->lastPage(); $i++)
-                                                <a href="{{ route('dashboard').'?page='.$i }}"
+                                        @if($products->lastPage() > 1)
+                                            @for($i = 1; $i <= $products->lastPage(); $i++)
+                                                <a href="{{ route('products').'?page='.$i }}"
                                                    class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-blue-700 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-tertiary active:text-gray-700 transition ease-in-out duration-150 hover:bg-tertiary">
                                                     {{ $i }}
                                                 </a>
                                             @endfor
                                         @endif
                                     </div>
-                                    @if($orders->currentPage() < $orders->lastPage())
-                                        <div v-if="$orders.current_page < $orders.last_page">
-                                            <a href="{{ route('dashboard').'?page='.($orders->currentPage()+1) }}"
+                                    @if($products->currentPage() < $products->lastPage())
+                                        <div v-if="$products.current_page < $products.last_page">
+                                            <a href="{{ route('products').'?page='.($products->currentPage()+1) }}"
                                                class="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
                                                aria-label="Next">
                                                 <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -191,4 +162,5 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>

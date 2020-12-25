@@ -6,6 +6,7 @@ use App\Http\Controllers\SlidersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +24,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::get('dashboard/{id}', [DashboardController::class, 'view'])->name('dashboard.view');
-    Route::post('dashboard/{id}', [DashboardController::class, 'changeStatus'])->name('dashboard.changeStatus');
+
+    Route::match(['get', 'post'],'dashboard/{id}/changeStatus', [DashboardController::class, 'changeStatus'])->name('dashboard.changeStatus');
+
+    Route::get('products', [AdminProductsController::class, 'products'])->name('products');
+
+    Route::get('products/{id}', [AdminProductsController::class, 'view'])->name('products.view');
+
 });
 
 require __DIR__.'/auth.php';

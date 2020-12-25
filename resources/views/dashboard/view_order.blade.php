@@ -62,9 +62,20 @@
                             <form action="{{ route('dashboard.changeStatus', $order->id) }}" method="post">
                                 @csrf
 
-                                <button type="submit" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">
-                                    Замовлення оброблено
+                                <button type="submit"
+                                        class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">
+                                    @if($order->status == 1 || $order->status == 0)
+                                        Замовлення оброблено
+                                    @else
+                                        Відхилити замовлення
+                                    @endif
+
+
                                 </button>
+
+                                @if($order->status == 1)
+                                    <a class="block px-2 py-2 text-red-800 font-semibold" href="{{ route('dashboard.changeStatus', $order->id) }}?cancel">Відхилити замовлення</a>
+                                @endif
                             </form>
                         </div>
                     </div>
