@@ -9,10 +9,16 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['parent_id', 'title', 'alias'];
+
+
     public function products()
     {
         return $this->hasMany(Product::class);
     }
 
-
+    public function getChildrenAttribute()
+    {
+        return self::where('parent_id', $this->id)->get();
+    }
 }

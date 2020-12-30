@@ -7,6 +7,9 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
+use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +32,23 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('products', [AdminProductsController::class, 'products'])->name('products');
 
-    Route::get('products/{id}', [AdminProductsController::class, 'view'])->name('products.view');
+    Route::get('products/new', [AdminProductsController::class, 'new'])->name('products.new');
+    Route::post('product/new', [AdminProductsController::class, 'save_new'])->name('products.save_new');
+
+    Route::get('products/{id}', [AdminProductsController::class, 'edit'])->name('products.edit');
+    Route::put('products/{id}', [AdminProductsController::class, 'save_edit'])->name('products.save_edit');
+    Route::delete('products/{id}', [AdminProductsController::class, 'delete'])->name('products.delete');
+
+
+    Route::get('categories', [AdminCategoriesController::class, 'categories'])->name('categories');
+    Route::get('categories/new', [AdminCategoriesController::class, 'new'])->name('categories.new');
+    Route::get('categories/{category_id}', [AdminCategoriesController::class, 'edit'])->name('categories.edit');
+
+
+    Route::post('categories', [AdminCategoriesController::class, 'save_new'])->name('categories.save_new');
+    Route::put('categories/{category_id}', [AdminCategoriesController::class, 'save_edit'])->name('categories.save_edit');
+    Route::delete('categories/{category_id}', [AdminCategoriesController::class, 'delete'])->name('categories.delete');
+
 
 });
 
@@ -48,4 +67,8 @@ Route::prefix('api')->group(function () {
     Route::get('product', [ProductsController::class, 'viewOne']);
 
     Route::get('get-children-categories', [CategoriesController::class, 'getChildren']);
+});
+
+Route::get('/', function () {
+    return view('index');
 });

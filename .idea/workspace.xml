@@ -2,21 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/products/products.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mykyta-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mykyta-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Components/Helpers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Components/ImageTable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/ProductRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/asset-manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zadaca-3-borosok-bogdanjpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-07-23-11-28jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js+jquery.nice-select.min.js.pagespeed.jc.f54RIu-EAV.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery-3.3.1.min.js.pagespeed.jm.r0B4QCxeCQ.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery.nicescroll.min.js+jquery.magnific-popup.min.js+jquery.countdown.min.js.pagespeed.jc.1wMXXpKSJ6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/jquery.slicknav.js.pagespeed.jm.SeaZtwZMai.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/js.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/main.js.pagespeed.jm.xkZybCxxYD.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/owl.carousel.min.js.pagespeed.jm.iD9BtIsBTL.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/css/main.41a44168.chunk.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/css/main.41a44168.chunk.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.421f85c5.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.421f85c5.chunk.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.421f85c5.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.84acc908.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.84acc908.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/runtime-main.076736ea.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/runtime-main.076736ea.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/media/ElegantIcons.ab2fe624.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/media/addToWishlist.3f1bbb54.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/media/fontawesome-webfont.fb685a7c.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/media/removeFromWishlist.d6056095.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/categories/categories.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/categories/render_item.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/categories/view_category.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/view_order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/view_order.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,19 +189,20 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mykyta-project-second" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="I:\Documents\Laravel\files\mykyta-project\public" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\git" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\thumbs" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\sliders" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\products" />
-      <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\categories" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\Documents\Laravel\files\mykyta-project\resources\views" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\resources\views\dashboard" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\app\Components" />
     </key>
@@ -201,6 +226,8 @@
       <workItem from="1607892820159" duration="8089000" />
       <workItem from="1608235140851" duration="7315000" />
       <workItem from="1608323663871" duration="11267000" />
+      <workItem from="1608962991233" duration="2941000" />
+      <workItem from="1608975472761" duration="23735000" />
     </task>
     <servers />
   </component>

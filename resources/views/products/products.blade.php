@@ -30,9 +30,15 @@
                                        class="flex-shrink flex-grow flex-auto leading-normal tracking-wide w-px flex-1 border border-none border-l-0 rounded rounded-l-none px-3 relative focus:outline-none text-xxs lg:text-xs lg:text-base text-gray-500 font-thin"
                                        placeholder="Пошук...">
                             </div>
+
                         </div>
                     </div>
+                    <a href="{{ route('products.new') }}"
+                            class="mt-5 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">
+                        Новий продукт
+                    </a>
                 </div>
+
 
                 @if($products->count() > 0)
                     <div
@@ -92,7 +98,7 @@
 
 
                                     <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-                                        <a href="{{ route('products.view', $product->id) }}"
+                                        <a href="{{ route('products.edit', $product->id) }}"
                                            class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
                                             Змінити ✍
                                         </a>
