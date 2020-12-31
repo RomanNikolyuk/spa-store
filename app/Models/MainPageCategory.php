@@ -15,4 +15,5 @@ class MainPageCategory extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
 }

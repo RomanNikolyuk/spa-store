@@ -17,6 +17,9 @@ class CategoriesController extends Controller
             $target_category = $id->category;
             $target_category->url = 'catalog/'.$target_category->alias;
 
+            $target_category->img = $target_category->image->title;
+
+
             $output[] = $id->category;
         }
 

@@ -69,6 +69,9 @@ Route::prefix('api')->group(function () {
     Route::get('get-children-categories', [CategoriesController::class, 'getChildren']);
 });
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::view('/', 'index');
+Route::view('catalog/{alias?}', 'index');
+Route::view('item/{id}', 'index');
+Route::view('wishlist', 'index');
+Route::view('cart', 'index');

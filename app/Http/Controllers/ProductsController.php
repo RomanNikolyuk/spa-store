@@ -21,6 +21,7 @@ class ProductsController extends Controller
             $searched_category = Category::where('alias', $category)->first();
 
             foreach ($searched_category->products as $product) {
+                $product->image = $product->images;
                 $ready_products[] = $product;
             }
 
@@ -32,6 +33,7 @@ class ProductsController extends Controller
                 foreach ($children_categories as $children_category) {
 
                     foreach ($children_category->products as $product) {
+                        $product->image = $product->images;
                         $ready_products[] = $product;
                     }
 
@@ -62,7 +64,20 @@ class ProductsController extends Controller
         $related = Product::where('category_id', $product->category_id)
             ->where('id', 'NOT LIKE', $product->id)
             ->limit(4)
-            ->get();
+            ->get()
+            ->reduce(function ($arr, $item) {
+                $item->image = $item->images;
+
+                if (!empty($item->image)) {
+                    $item->image = [$item->image[0]];
+                }
+
+                $arr[] = $item;
+                return $arr;
+            });
+
+
+
 
         $product->related = $related;
 
@@ -100,7 +115,7 @@ class ProductsController extends Controller
                 // Якщо продукту за id не існує - удалить запис нахуй
                 if (! is_null($product)) {
 
-                    $product->image = $product->images->title ?? null;
+                    $product->image = $product->images;
 
                     $product->type = 'recommended';
 

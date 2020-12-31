@@ -21,4 +21,9 @@ class Category extends Model
     {
         return self::where('parent_id', $this->id)->get();
     }
+
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 }

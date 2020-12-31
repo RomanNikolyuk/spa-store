@@ -45,6 +45,6 @@ class Product extends Model
         }
 
 
-        return $return;
+        return $return ?? [];
     }
 }
