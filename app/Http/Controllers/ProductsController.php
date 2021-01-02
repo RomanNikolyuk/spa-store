@@ -25,7 +25,6 @@ class ProductsController extends Controller
                 $ready_products[] = $product;
             }
 
-
             if ($searched_category->parent_id === 0) {
 
                 $children_categories = Category::where('parent_id', $searched_category->id)->get();

@@ -8,7 +8,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
-
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +67,8 @@ Route::prefix('api')->group(function () {
     Route::get('product', [ProductsController::class, 'viewOne']);
 
     Route::get('get-children-categories', [CategoriesController::class, 'getChildren']);
+
+    Route::post('order', [OrderController::class, 'api']);
 });
 
 

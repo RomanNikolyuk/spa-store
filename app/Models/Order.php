@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['first_name', 'last_name', 'delivery_address', 'telephone', 'email'];
+
     public function getStatusColorAttribute()
     {
         if ($this->status === 2) {
