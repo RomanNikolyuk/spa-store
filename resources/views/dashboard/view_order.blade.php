@@ -45,7 +45,7 @@
                                 <td class="px-2 py-2 text-purple-500 font-semibold">Продукти</td>
                                 <td class="px-2 py-2">
                                     @foreach($order->products as $product)
-                                        <a href="#">{{ $product->title }}</a>;<br>
+                                        <a href="{{ route('item', $product->id) }}" target="_blank">{{ $product->title }}</a>;<br>
                                     @endforeach
                                 </td>
                             </tr>

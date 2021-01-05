@@ -2,10 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Mail/OrderCreated.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/OrderProduct.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-23-12-09-28jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-23-12-09-30jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-23-12-09-31jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.2a14bb1d.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.2a14bb1d.chunk.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.2a14bb1d.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.5e385945.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.5e385945.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.b827bcf3.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.b827bcf3.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/media/checkMark.2e1e3b70.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/mail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/js.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/view_order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/view_order.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +174,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
+    <property name="last_opened_file_path" value="C:/Open Server/OSPanel/domains/laravel3.loc" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -167,9 +187,11 @@
       <recent name="I:\Documents\Laravel\files\mykyta-project\public\images\products" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="I:\Documents\Laravel\files\mykyta-project\public\static" />
+      <recent name="I:\Documents\Laravel\files\mykyta-project\public\js" />
+      <recent name="I:\Documents\Laravel\files\mykyta-project\public" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\resources\views" />
       <recent name="I:\Documents\Laravel\files\mykyta-project\resources\views\dashboard" />
-      <recent name="I:\Documents\Laravel\files\mykyta-project\app\Components" />
     </key>
   </component>
   <component name="RunManager">
@@ -193,7 +215,7 @@
       <workItem from="1608323663871" duration="11267000" />
       <workItem from="1608962991233" duration="2941000" />
       <workItem from="1608975472761" duration="29094000" />
-      <workItem from="1609524025469" duration="3844000" />
+      <workItem from="1609524025469" duration="19108000" />
     </task>
     <servers />
   </component>

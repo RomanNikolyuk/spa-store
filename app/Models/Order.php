@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['first_name', 'last_name', 'delivery_address', 'telephone', 'email'];
+    protected $fillable = ['first_name', 'last_name', 'delivery_address', 'telephone', 'email', 'status'];
 
     public function getStatusColorAttribute()
     {

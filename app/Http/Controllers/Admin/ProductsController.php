@@ -41,14 +41,17 @@ class ProductsController extends Controller
     {
         $data = $request->except('_method', '_token', 'image');
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+
+        if ($request->has('image')) {
 
             Product::create($data);
 
             $inserted_id = Product::latest()->first()->id;
 
-            ImageTable::save($image, $inserted_id, 'product');
+            foreach ($request->file('image') as $image) {
+                ImageTable::save($image, $inserted_id, 'product');
+            }
+
         } else {
             return redirect()->back()->with('error', 'Картинку не вибрано');
         }

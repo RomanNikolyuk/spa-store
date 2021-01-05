@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/static/css/main.41a44168.chunk.css",
-    "main.js": "/static/js/main.84acc908.chunk.js",
-    "main.js.map": "/static/js/main.84acc908.chunk.js.map",
+    "main.js": "/static/js/main.b827bcf3.chunk.js",
+    "main.js.map": "/static/js/main.b827bcf3.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.076736ea.js",
     "runtime-main.js.map": "/static/js/runtime-main.076736ea.js.map",
-    "static/js/2.421f85c5.chunk.js": "/static/js/2.421f85c5.chunk.js",
-    "static/js/2.421f85c5.chunk.js.map": "/static/js/2.421f85c5.chunk.js.map",
+    "static/js/2.2a14bb1d.chunk.js": "/static/js/2.2a14bb1d.chunk.js",
+    "static/js/2.2a14bb1d.chunk.js.map": "/static/js/2.2a14bb1d.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.41a44168.chunk.css.map": "/static/css/main.41a44168.chunk.css.map",
-    "static/js/2.421f85c5.chunk.js.LICENSE.txt": "/static/js/2.421f85c5.chunk.js.LICENSE.txt",
+    "static/js/2.2a14bb1d.chunk.js.LICENSE.txt": "/static/js/2.2a14bb1d.chunk.js.LICENSE.txt",
     "static/media/bootstrap.min.css+font-awesome.min.css+elegant-icons.css+magnific-popup.css+nice-select.css+owl.carousel.min.css+slicknav.min.css+style.css.pagespeed.cc.BU1uaYcpbk.css": "/static/media/fontawesome-webfont.fb685a7c.woff2",
     "static/media/addToWishlist.3f1bbb54.webp": "/static/media/addToWishlist.3f1bbb54.webp",
+    "static/media/checkMark.2e1e3b70.png": "/static/media/checkMark.2e1e3b70.png",
     "static/media/removeFromWishlist.d6056095.webp": "/static/media/removeFromWishlist.d6056095.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.076736ea.js",
-    "static/js/2.421f85c5.chunk.js",
+    "static/js/2.2a14bb1d.chunk.js",
     "static/css/main.41a44168.chunk.css",
-    "static/js/main.84acc908.chunk.js"
+    "static/js/main.b827bcf3.chunk.js"
   ]
 }

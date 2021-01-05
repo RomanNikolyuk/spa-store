@@ -24,6 +24,8 @@ use App\Http\Controllers\OrderController;
 
 Route::prefix('admin')->middleware('auth')->group(function () {
 
+    Route::redirect('/', '/admin/dashboard');
+
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::get('dashboard/{id}', [DashboardController::class, 'view'])->name('dashboard.view');
@@ -68,12 +70,14 @@ Route::prefix('api')->group(function () {
 
     Route::get('get-children-categories', [CategoriesController::class, 'getChildren']);
 
-    Route::post('order', [OrderController::class, 'api']);
+    Route::get('order', [OrderController::class, 'api']);
 });
 
 
 Route::view('/', 'index');
 Route::view('catalog/{alias?}', 'index');
-Route::view('item/{id}', 'index');
+Route::view('item/{id}', 'index')->name('item');
 Route::view('wishlist', 'index');
 Route::view('cart', 'index');
+
+Route::get('send', [OrderController::class, 'sendMail']);

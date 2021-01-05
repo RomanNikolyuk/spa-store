@@ -2,10 +2,10 @@
 // Copyright 2012 Google Inc. All rights reserved.
 (function(){
 
-let data = {
+var data = {
 "resource": {
   "version":"1",
-
+  
   "macros":[{
       "function":"__e"
     },{

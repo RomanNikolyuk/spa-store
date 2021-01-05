@@ -22,8 +22,14 @@ class ProductsController extends Controller
 
             foreach ($searched_category->products as $product) {
                 $product->image = $product->images;
+
+                if (!empty($product->image)) {
+                    $product->image = $product->image[0];
+                }
+
                 $ready_products[] = $product;
             }
+
 
             if ($searched_category->parent_id === 0) {
 
@@ -33,6 +39,11 @@ class ProductsController extends Controller
 
                     foreach ($children_category->products as $product) {
                         $product->image = $product->images;
+
+                        if (!empty($product->image)) {
+                            $product->image = $product->image[0];
+                        }
+
                         $ready_products[] = $product;
                     }
 
@@ -43,7 +54,17 @@ class ProductsController extends Controller
 
             $output = CollectionPaginator::paginate($ready_products ?? [], $products_per_page, $page)->toArray()['data'];
         } else {
-            $output = Product::paginate($products_per_page)->toArray()['data'];
+            $products = Product::paginate($products_per_page);
+
+            foreach ($products as $product) {
+
+                $product->image = $product->images;
+
+                if (! empty($product->image)) {
+                    $product->image = $product->image[0];
+                }
+                $output[] = $product;
+            }
         }
 
 
@@ -83,7 +104,7 @@ class ProductsController extends Controller
         $category = $product->category;
 
         if ($category->parent_id !== 0) {
-            $parent_category = Category::find($category->id);
+            $parent_category = Category::find($category->parent_id);
 
             $categories = $parent_category->title . ' -> '. $category->title;
         } else {
@@ -116,6 +137,11 @@ class ProductsController extends Controller
 
                     $product->image = $product->images;
 
+                    if (! empty($product->image)) {
+                        $product->image = $product->image[0];
+                    }
+
+
                     $product->type = 'recommended';
 
                     $output[] = $product;
@@ -128,7 +154,11 @@ class ProductsController extends Controller
             $new_products = Product::limit(8)->orderBy('id', 'DESC')->get();
 
             foreach ($new_products as $new_product) {
-                $new_product->image = $new_product->images->title ?? null;
+                $new_product->image = $new_product->images ?? null;
+
+                if (!empty($new_product->image)) {
+                    $new_product->image = $new_product->image[0];
+                }
 
                 $new_product->type = 'new';
 
