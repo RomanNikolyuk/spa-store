@@ -75,9 +75,8 @@ Route::prefix('api')->group(function () {
 
 
 Route::view('/', 'index');
-Route::view('catalog/{alias?}', 'index');
+Route::view('catalog/{alias?}/{alias2?}', 'index');
 Route::view('item/{id}', 'index')->name('item');
 Route::view('wishlist', 'index');
 Route::view('cart', 'index');
 
-Route::get('send', [OrderController::class, 'sendMail']);

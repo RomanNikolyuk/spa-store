@@ -2,30 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Mail/OrderCreated.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/OrderProduct.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-23-12-09-28jpg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-23-12-09-30jpg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-23-12-09-31jpg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/2.2a14bb1d.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/2.2a14bb1d.chunk.js.LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/2.2a14bb1d.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/main.5e385945.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/main.5e385945.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/main.b827bcf3.chunk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/main.b827bcf3.chunk.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/media/checkMark.2e1e3b70.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/mail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mykyta-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mykyta-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/asset-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/js.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/js.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/view_order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/view_order.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/OrderCreated.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,6 +144,19 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/laravel/breeze" />
       <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/vendor/php-http/multipart-stream-builder" />
+      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message" />
+      <path value="$PROJECT_DIR$/vendor/php-http/client-common" />
+      <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/vendor/clue/stream-filter" />
+      <path value="$PROJECT_DIR$/vendor/kriswallsmith/buzz" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/vendor/mailgun/mailgun-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="1lTzd4EHI4tC2ivblUSjlMmLXab" />
@@ -215,7 +212,7 @@
       <workItem from="1608323663871" duration="11267000" />
       <workItem from="1608962991233" duration="2941000" />
       <workItem from="1608975472761" duration="29094000" />
-      <workItem from="1609524025469" duration="19108000" />
+      <workItem from="1609524025469" duration="22488000" />
     </task>
     <servers />
   </component>

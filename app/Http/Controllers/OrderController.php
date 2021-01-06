@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Mail\OrderCreated;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Mailgun\Mailgun;
 
 class OrderController extends Controller
 {
@@ -32,27 +34,24 @@ class OrderController extends Controller
 
         foreach ($products as $product) {
             OrderProduct::create(['order_id' => $created_order_id, 'product_id' => $product]);
+
+            $ready_products[] = Product::find($product);
         }
 
-        Mail::to('roman.nikolyuk@gmail.com')->send(new OrderCreated());
-
-
-
-
-        return new OrderCreated();
+        $this->sendMail($ready_products, $created_order_id);
     }
 
-    public function sendMail()
+    public function sendMail($products, $order_id)
     {
-        /*Mail::send('mail', ['data' => ''], function ($message) {
-            $message->to('roman.nikolyuk@gmail.com', 'Сайт Дзвін');
-            $message->from('dzvin.orders@gmail.com', 'Николюк');
-            $message->subject('Нове замовлення!');
-        });*/
 
+        $mgClient = Mailgun::create('f0139d0771017e43e131a3ee0570d102-3d0809fb-0d46d825', 'https://api.mailgun.net/v3/sandboxeb700e8302a74bf29372e2e49dd67d44.mailgun.org');
 
-
-
+        $mgClient->messages()->send('sandboxeb700e8302a74bf29372e2e49dd67d44.mailgun.org', [
+            'from' => 'orders@dzvin.com.ua',
+            'to' => 'roman.nikolyuk@gmail.com',
+            'subject' => 'Нове замовлення (⌐■_■)',
+            'html' => view('mail', ['products' => $products, 'order_id' => $order_id])->render()
+        ]);
 
     }
 }
