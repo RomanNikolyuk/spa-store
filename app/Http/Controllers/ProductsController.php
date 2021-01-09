@@ -14,13 +14,74 @@ class ProductsController extends Controller
     {
         $category = $request->input('category');
         $page = $request->input('page', 1);
+        $search = $request->input('q');
+        $order_by = $request->input('order_by');
 
         $products_per_page = 55;
 
-        if ($category) {
-            $searched_category = Category::where('alias', $category)->first();
 
-            foreach ($searched_category->products as $product) {
+        if (is_null($search)) {
+            if ($category) {
+                $searched_category = Category::where('alias', $category)->first();
+
+                foreach ($searched_category->products as $product) {
+                    $product->image = $product->images;
+
+                    if (!empty($product->image)) {
+                        $product->image = $product->image[0];
+                    }
+
+                    $ready_products[] = $product;
+                }
+
+
+                if ($searched_category->parent_id === 0) {
+
+                    $children_categories = Category::where('parent_id', $searched_category->id)->get();
+
+                    foreach ($children_categories as $children_category) {
+
+                        foreach ($children_category->products as $product) {
+                            $product->image = $product->images;
+
+                            if (!empty($product->image)) {
+                                $product->image = $product->image[0];
+                            }
+
+                            $ready_products[] = $product;
+                        }
+
+                    }
+
+                }
+
+
+                $output = CollectionPaginator::paginate($ready_products ?? [], $products_per_page, $page)->toArray()['data'];
+
+            } else {
+                if (!is_null($order_by)) {
+                    $products = Product::orderBy('price', $order_by)->paginate($products_per_page);
+                } else {
+                    $products = Product::paginate($products_per_page);
+                }
+
+
+                foreach ($products as $product) {
+
+                    $product->image = $product->images;
+
+                    if (!empty($product->image)) {
+                        $product->image = $product->image[0];
+                    }
+                    $output[] = $product;
+                }
+            }
+
+
+        } else {
+            $products = Product::where('title', 'LIKE', "%$search%")->get();
+
+            foreach ($products as $product) {
                 $product->image = $product->images;
 
                 if (!empty($product->image)) {
@@ -30,47 +91,11 @@ class ProductsController extends Controller
                 $ready_products[] = $product;
             }
 
-
-            if ($searched_category->parent_id === 0) {
-
-                $children_categories = Category::where('parent_id', $searched_category->id)->get();
-
-                foreach ($children_categories as $children_category) {
-
-                    foreach ($children_category->products as $product) {
-                        $product->image = $product->images;
-
-                        if (!empty($product->image)) {
-                            $product->image = $product->image[0];
-                        }
-
-                        $ready_products[] = $product;
-                    }
-
-                }
-
-            }
-
-
             $output = CollectionPaginator::paginate($ready_products ?? [], $products_per_page, $page)->toArray()['data'];
-        } else {
-            $products = Product::paginate($products_per_page);
-
-            foreach ($products as $product) {
-
-                $product->image = $product->images;
-
-                if (! empty($product->image)) {
-                    $product->image = $product->image[0];
-                }
-                $output[] = $product;
-            }
         }
-
 
         return json_encode($output);
     }
-
 
 
     public function viewOne(Request $request)
@@ -96,17 +121,18 @@ class ProductsController extends Controller
                 return $arr;
             });
 
+        if (is_null($related)) {
+            $related = Product::all()->random(4);
+        }
 
-
-
-        $product->related = $related;
+        $product->related = !is_null($related) ? $related : [];
 
         $category = $product->category;
 
         if ($category->parent_id !== 0) {
             $parent_category = Category::find($category->parent_id);
 
-            $categories = $parent_category->title . ' -> '. $category->title;
+            $categories = $parent_category->title . ' -> ' . $category->title;
         } else {
             $categories = $category->title;
         }
@@ -114,12 +140,10 @@ class ProductsController extends Controller
         $product->categories = $categories;
 
 
-
         $product->reviews = [];
 
         return json_encode($product);
     }
-
 
 
     public function mainPage()
@@ -133,11 +157,11 @@ class ProductsController extends Controller
                 $product = $product_id->product;
 
                 // Якщо продукту за id не існує - удалить запис нахуй
-                if (! is_null($product)) {
+                if (!is_null($product)) {
 
                     $product->image = $product->images;
 
-                    if (! empty($product->image)) {
+                    if (!empty($product->image)) {
                         $product->image = $product->image[0];
                     }
 

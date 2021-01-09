@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Components\Helpers;
+use App\Components\ImageTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\MainPageCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -28,11 +30,10 @@ class CategoriesController extends Controller
         foreach ($categories as $category) {
 
             $categories_result[$category->id] = $category->title;
+
         }
 
         return view('categories.view_category')->with('categories', $categories_result);
-
-
     }
 
     public function edit($id)
@@ -43,12 +44,10 @@ class CategoriesController extends Controller
 
         $categories_result[0] = '';
 
-        foreach ($all_categories as $category) {
+        foreach ($all_categories as $value) {
 
-            $categories_result[$category->id] = $category->title;
+            $categories_result[$value->id] = $value->title;
         }
-
-
 
         return view('categories.view_category')->with('category', $category)->with('categories', $categories_result);
     }
@@ -61,21 +60,52 @@ class CategoriesController extends Controller
 
         Category::create($data);
 
+        $inserted_id = Category::latest()->first()->id;
+
+        $this->insertIntoMainPageProducts($inserted_id);
+
         return redirect()->route('categories');
     }
 
     public function save_edit(Request $request, $id)
     {
         $data = $request->except('_method', '_token');
+
         $category = Category::find($id);
+
 
         $data['alias'] = Str::slug($data['title']);
 
         $category->update($data);
 
+        $this->insertIntoMainPageProducts($id);
+
         return redirect()->route('categories');
 
     }
+
+    public function insertIntoMainPageProducts($category_id)
+    {
+        $row = MainPageCategory::where('category_id', $category_id)->first();
+
+        if (\request()->hasFile('image')) {
+            ImageTable::save(\request()->file('image'), $category_id, 'category');
+        }
+
+        if (\request('mainpage_category')) {
+            if (is_null($row))
+                MainPageCategory::create(['category_id' => $category_id]);
+        } else {
+
+            if (!is_null($row)) {
+                $row->delete();
+            }
+
+        }
+
+
+    }
+
 
     public function delete($id)
     {
@@ -84,7 +114,6 @@ class CategoriesController extends Controller
         $category->products()->delete();
 
         $category->delete();
-
 
         return redirect()->route('categories');
     }

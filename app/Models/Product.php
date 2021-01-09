@@ -47,4 +47,9 @@ class Product extends Model
 
         return $return ?? [];
     }
+
+    public function recommended()
+    {
+        return $this->hasOne(RecommendedProducts::class);
+    }
 }

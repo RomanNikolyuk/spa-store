@@ -8,14 +8,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\RecommendedProducts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
-    public function products()
+    public function products(Request $request)
     {
         $products = Product::orderBy('updated_at', 'desc')->paginate(25);
+
+        if ($request->has('search')) {
+            $products = Product::where('title', 'LIKE', "%{$request->input('search')}%")->orderBy('updated_at', 'desc')->paginate(35);
+        }
 
         return view('products.products')->with('products', $products);
     }
@@ -52,6 +57,8 @@ class ProductsController extends Controller
                 ImageTable::save($image, $inserted_id, 'product');
             }
 
+            $this->insertIntoRecommended($inserted_id);
+
         } else {
             return redirect()->back()->with('error', 'Картинку не вибрано');
         }
@@ -74,12 +81,34 @@ class ProductsController extends Controller
 
         $product->update($data);
 
+        $this->insertIntoRecommended($id);
+
         return redirect()->route('products');
+    }
+
+    public function insertIntoRecommended($product_id)
+    {
+        $row = RecommendedProducts::where('product_id', $product_id)->first();
+
+        if (isset($_POST['recommended'])) {
+            if (is_null($row))
+                RecommendedProducts::create(['product_id' => $product_id]);
+        } else {
+            if (!is_null($row))
+                $row->delete();
+        }
+
+
     }
 
     public function delete($id)
     {
         $product = Product::find($id);
+
+        $recommended = RecommendedProducts::where('product_id', $id);
+
+        if (!is_null($recommended))
+            $recommended->delete();
 
         $product->delete();
 

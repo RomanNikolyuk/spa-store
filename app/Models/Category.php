@@ -14,6 +14,9 @@ class Category extends Model
 
     public function products()
     {
+        if (request('order_by')) {
+            return $this->hasMany(Product::class)->orderBy('price', request('order_by'));
+        }
         return $this->hasMany(Product::class);
     }
 
@@ -25,5 +28,15 @@ class Category extends Model
     public function image()
     {
         return $this->hasOne(Image::class);
+    }
+
+    public function getParentAttribute()
+    {
+        return $this->find($this->parent_id);
+    }
+
+    public function main_page()
+    {
+        return $this->hasOne(MainPageCategory::class);
     }
 }

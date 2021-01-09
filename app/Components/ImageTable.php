@@ -31,6 +31,10 @@ class ImageTable
 
         $image_row = Image::where('title', 'LIKE', "%$image_name")->first();
 
+        if ($type === 'slider' || $type === 'category') {
+            Image::where($type.'_id', $id)->delete();
+        }
+
         if (is_null($image_row)) {
 
             $new_image_row = new Image(['title' => $image_path . $image_name, $type . '_id' => $id]);

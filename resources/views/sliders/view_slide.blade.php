@@ -1,12 +1,11 @@
 <x-app-layout>
-    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
-            @if(isset($product))
-                Редагування {{ $product->title }}
+            @if(isset($slide))
+                Редагування слайду
             @else
-                Створення нового товару
+                Створення нового слайду
             @endif
         </h2>
     </x-slot>
@@ -18,11 +17,11 @@
                     class=" w-full justify-center align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
 
                     <form class="w-full max-w-lg"
-                          action="{{ isset($product) ? route('products.save_edit', $product->id) : route('products.save_new') }}"
+                          action="{{ isset($slide) ? route('slider.save_edit', $slide->id) : route('slider.save_new') }}"
                           method="post" enctype="multipart/form-data">
                         @csrf
 
-                        @if(isset($product))
+                        @if(isset($slide))
                             {{ method_field('put') }}
                         @endif
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -32,41 +31,43 @@
                                        for="grid-first-name">
                                     Заголовок
                                 </label>
-                                <input value="{{ $product->title ?? '' }}"
+                                <input value="{{ $slide->big_text ?? '' }}"
                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                       id="grid-first-name" name="title" type="text" placeholder="Кадило">
+                                       id="grid-first-name" name="big_text" type="text" placeholder="">
                             </div>
 
 
                             <div class="w-full mb-8">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                        for="grid-last-name">
-                                    Короткий опис
+                                    Червоний текст (зверху)
                                 </label>
-                                <textarea name="small_desc"
+                                <textarea name="small_text_1"
                                           class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                                          id="small_desc">{{ $product->small_desc ?? '' }}</textarea>
+                                          id="small_desc" value="">{{ $slide->small_text_1 ?? '' }}</textarea>
                             </div>
 
                             <div class="w-full mb-8">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                        for="grid-password">
-                                    Категорія
+                                    Чорний текст (під заголовком)
                                 </label>
-                                {!! Form::select('category_id', $categories, $product->category->id ?? '', ['class' => 'border border-gray-200']) !!}
+
+                                <textarea name="small_text_2"
+                                       class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
+                                          id="small_desc" value="">{{ $slide->small_text_2 ?? '' }}</textarea>
                             </div>
 
 
                             <div class="w-full mb-8">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                        for="grid-password">
-                                    Розширений опис
+                                    Текст на кнопці
                                 </label>
-                                <textarea name="big_desc"
-                                          class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-blue rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                                          id="big_desc">{{ $product->big_desc ?? '' }}</textarea>
+                                <textarea name="button_text"
+                                          class="no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
+                                          id="big_desc">{{ $slide->button_text ?? '' }}</textarea>
                             </div>
-
 
                             <div class="w-full mb-8">
                                 <label
@@ -76,31 +77,23 @@
                                         <path
                                             d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/>
                                     </svg>
-                                    <span class="mt-2 text-base leading-normal">Виберіть файли</span>
-                                    <input type='file' class="hidden" multiple="" name="image[]">
+                                    <span class="mt-2 text-base leading-normal">Виберіть картинку</span>
+                                    <input type='file' class="hidden" name="image">
                                 </label>
                             </div>
-
 
                             <div class="w-full">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                        for="grid-password">
-                                    Ціна
+                                    Посилання на кнопці
                                 </label>
-                                <input name="price" value="{{ $product->price ?? '' }}"
+                                <input name="url" value="{{ $slide->url ?? '' }}"
                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                       id="grid-first-name" type="text" placeholder="5000">
+                                       id="grid-first-name" type="text" placeholder="">
                             </div>
 
-                            <div class="w-full">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                       for="grid-recommended">
-                                    На головну
-                                </label>
-                                <input name="recommended"
-                                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                       id="grid-recommended" type="checkbox" {{ isset($product) && !is_null($product->recommended) ? 'checked' : null }}>
-                            </div>
+
+
 
 
                         </div>
@@ -115,8 +108,8 @@
                         </div>
                     </form>
 
-                    @if(isset($product))
-                        <form action="{{ route('products.delete', $product->id) }}" method="post">
+                    @if(isset($slide))
+                        <form action="{{ route('slider.delete', $slide->id) }}" method="post">
                             @csrf
                             @method('delete')
 

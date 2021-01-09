@@ -9,11 +9,13 @@ class Slider extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['small_text_1', 'small_text_2', 'big_text', 'button_text', 'url'];
+
     public function image() {
         return $this->hasOne(Image::class);
     }
 
     public function getImageAttribute() {
-        return $this->image()->first()->title;
+        return $this->image()->first()->title ?? '';
     }
 }

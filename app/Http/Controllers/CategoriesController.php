@@ -15,9 +15,17 @@ class CategoriesController extends Controller
 
         foreach ($categories_ids as $id) {
             $target_category = $id->category;
-            $target_category->url = 'catalog/'.$target_category->alias;
 
-            $target_category->img = $target_category->image->title;
+            if ($target_category->parent_id !== 0) {
+                $parent_cat = Category::find($target_category->parent_id);
+
+                $target_category->url = 'catalog/'.$parent_cat->alias.'/'.$target_category->alias;
+            } else {
+                $target_category->url = 'catalog/'.$target_category->alias;
+            }
+
+
+            $target_category->img = $target_category->image->title ?? '';
 
 
             $output[] = $id->category;

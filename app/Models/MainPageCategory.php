@@ -11,6 +11,8 @@ class MainPageCategory extends Model
 
     public $table = 'mainpage_categories';
 
+    protected $fillable = ['category_id'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -2,14 +2,57 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/mykyta-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mykyta-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SliderController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/120039251-326043665329536-7739579053730546230-njpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/1c3b1c5f9bb7b347cfc7b0b2371e1da7jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/32c152c238ee1e350c388286cc836964jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/35490498-8931801-i-m-out-officially-prison-break-s-wentworth-miller-revealed-on-a-97-1604968675997jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/4141252888323270468jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/avajpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/tenorgif.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/categories/unnamedpng.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/120039251-326043665329536-7739579053730546230-njpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-21-12-51-09jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-21-13-00-51jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-21-13-05-48jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-21-13-13-11jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/zobrazennya-viber-2020-12-21-13-13-22jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/120039251-326043665329536-7739579053730546230-njpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/32c152c238ee1e350c388286cc836964jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/aptfemalecobra-smallgif.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/giphy-2-23jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/prison-break-michael-and-sucrewebp.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/smileico.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/sliders/zobrazennya-viber-2020-12-23-12-09-28jpg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/css/main.58d7c247.chunk.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/css/main.58d7c247.chunk.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.b86ee2da.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.b86ee2da.chunk.js.LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/2.b86ee2da.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.4f4dc010.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.4f4dc010.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.e33ce34d.chunk.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/static/js/main.e33ce34d.chunk.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/sliders/sliders.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/sliders/view_slide.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Components/ImageTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Components/ImageTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/OrderCreated.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/MainPageCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/MainPageCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/RecommendedProducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/RecommendedProducts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Slider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Slider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/categories/view_category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/categories/view_category.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navigation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/view_product.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -212,7 +255,7 @@
       <workItem from="1608323663871" duration="11267000" />
       <workItem from="1608962991233" duration="2941000" />
       <workItem from="1608975472761" duration="29094000" />
-      <workItem from="1609524025469" duration="22488000" />
+      <workItem from="1609524025469" duration="52165000" />
     </task>
     <servers />
   </component>

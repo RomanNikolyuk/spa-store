@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\Admin\SliderController as AdminSlidersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,7 +51,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('categories/{category_id}', [AdminCategoriesController::class, 'save_edit'])->name('categories.save_edit');
     Route::delete('categories/{category_id}', [AdminCategoriesController::class, 'delete'])->name('categories.delete');
 
+    Route::get('slider', [AdminSlidersController::class, 'slider'])->name('slider');
+    Route::get('slider/new', [AdminSlidersController::class, 'new'])->name('slider.new');
+    Route::get('slider/{id}', [AdminSlidersController::class, 'edit'])->name('slider.edit');
 
+    Route::put('slider/{id}', [AdminSlidersController::class, 'save_edit'])->name('slider.save_edit');
+    Route::post('slider/new', [AdminSlidersController::class, 'save_new'])->name('slider.save_new');
+    Route::delete('slider/{id}', [AdminSlidersController::class, 'delete'])->name('slider.delete');
 });
 
 require __DIR__.'/auth.php';

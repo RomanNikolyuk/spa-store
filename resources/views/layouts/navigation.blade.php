@@ -23,6 +23,10 @@
                     <x-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
                         Категорії
                     </x-nav-link>
+
+                    <x-nav-link :href="route('slider')" :active="request()->routeIs('slider')">
+                        Слайдер
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -81,6 +85,10 @@
 
             <x-responsive-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
                 Категорії
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('slider')" :active="request()->routeIs('slider')">
+                Слайдер
             </x-responsive-nav-link>
 
         </div>
