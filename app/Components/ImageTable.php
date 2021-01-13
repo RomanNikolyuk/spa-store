@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class ImageTable
 {
-    public static function save(Object $image, Int $id, String $type): string
+    public static function save(object $image, int $id, string $type): string
     {
         $image_name = Str::slug($image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
         $image_path = '/images/';
@@ -26,12 +26,17 @@ class ImageTable
                 break;
         }
 
+        $image_row = Image::where('title', 'LIKE', "%$image_name")->first();
+
+        if (!is_null($image_row)) {
+            $image_name = Str::random(12) .'.'.$image->getClientOriginalExtension();
+        }
 
         $image->move(public_path() . $image_path, $image_name);
 
-        $image_row = Image::where('title', 'LIKE', "%$image_name")->first();
+        Image::create(['title' => $image_path . $image_name, $type . '_id' => $id]);
 
-        if ($type === 'slider' || $type === 'category') {
+        /*if ($type === 'slider' || $type === 'category') {
             Image::where($type.'_id', $id)->delete();
         }
 
@@ -44,7 +49,7 @@ class ImageTable
 
             $image_row->update([$type . '_id' => $id]);
 
-        }
+        }*/
 
         return $image_path . $image_name;
 

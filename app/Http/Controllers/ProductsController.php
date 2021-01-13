@@ -123,6 +123,16 @@ class ProductsController extends Controller
 
         if (is_null($related)) {
             $related = Product::all()->random(4);
+
+            foreach ($related as $value) {
+                $value->image = $value->images;
+
+                if (!empty($value->image)) {
+                    $value->image = $value->image[0];
+                }
+
+            }
+
         }
 
         $product->related = !is_null($related) ? $related : [];

@@ -6,11 +6,9 @@ use App\Components\Helpers;
 use App\Components\ImageTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\RecommendedProducts;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
