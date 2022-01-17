@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.58d7c247.chunk.css",
-    "main.js": "/static/js/main.4f4dc010.chunk.js",
-    "main.js.map": "/static/js/main.4f4dc010.chunk.js.map",
+    "main.js": "/static/js/main.312290ad.chunk.js",
+    "main.js.map": "/static/js/main.312290ad.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.076736ea.js",
     "runtime-main.js.map": "/static/js/runtime-main.076736ea.js.map",
-    "static/js/2.b86ee2da.chunk.js": "/static/js/2.b86ee2da.chunk.js",
-    "static/js/2.b86ee2da.chunk.js.map": "/static/js/2.b86ee2da.chunk.js.map",
+    "static/js/2.d7ed820f.chunk.js": "/static/js/2.d7ed820f.chunk.js",
+    "static/js/2.d7ed820f.chunk.js.map": "/static/js/2.d7ed820f.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.58d7c247.chunk.css.map": "/static/css/main.58d7c247.chunk.css.map",
-    "static/js/2.b86ee2da.chunk.js.LICENSE.txt": "/static/js/2.b86ee2da.chunk.js.LICENSE.txt",
+    "static/js/2.d7ed820f.chunk.js.LICENSE.txt": "/static/js/2.d7ed820f.chunk.js.LICENSE.txt",
     "static/media/bootstrap.min.css+font-awesome.min.css+elegant-icons.css+magnific-popup.css+nice-select.css+owl.carousel.min.css+slicknav.min.css+style.css.pagespeed.cc.BU1uaYcpbk.css": "/static/media/fontawesome-webfont.fb685a7c.woff2",
     "static/media/addToWishlist.3f1bbb54.webp": "/static/media/addToWishlist.3f1bbb54.webp",
     "static/media/checkMark.2e1e3b70.png": "/static/media/checkMark.2e1e3b70.png",
@@ -17,8 +17,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.076736ea.js",
-    "static/js/2.b86ee2da.chunk.js",
+    "static/js/2.d7ed820f.chunk.js",
     "static/css/main.58d7c247.chunk.css",
-    "static/js/main.4f4dc010.chunk.js"
+    "static/js/main.312290ad.chunk.js"
   ]
 }

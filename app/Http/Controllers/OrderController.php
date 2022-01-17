@@ -32,7 +32,7 @@ class OrderController extends Controller
         foreach ($products as $product) {
             OrderProduct::create(['order_id' => $created_order_id, 'product_id' => $product]);
 
-            $ready_products[] = Product::find($product);
+            $ready_products[] = Product::findOrFail($product);
         }
 
         $this->sendMail($ready_products ?? [], $created_order_id);
@@ -40,11 +40,11 @@ class OrderController extends Controller
 
     public function sendMail($products, $order_id)
     {
-        $mgClient = Mailgun::create('f0139d0771017e43e131a3ee0570d102-3d0809fb-0d46d825', 'https://api.mailgun.net/v3/sandboxeb700e8302a74bf29372e2e49dd67d44.mailgun.org');
+        $mgClient = Mailgun::create('e6c65b078ad6f235dcab946d18e4b5ff-28d78af2-7dcc0424', 'https://api.mailgun.net/v3/sandbox9e8fb193bfd947f8ac2848fe77995e58.mailgun.org');
 
-        $mgClient->messages()->send('sandboxeb700e8302a74bf29372e2e49dd67d44.mailgun.org', [
+        $mgClient->messages()->send('sandbox9e8fb193bfd947f8ac2848fe77995e58.mailgun.org', [
             'from' => 'orders@dzvin.com.ua',
-            'to' => 'dzvin12@meta.ua',
+            'to' => 'roman.nikolyuk@gmail.com',
             'subject' => 'Нове замовлення (⌐■_■)',
             'html' => view('mail', ['products' => $products, 'order_id' => $order_id])->render()
         ]);

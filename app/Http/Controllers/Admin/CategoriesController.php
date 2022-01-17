@@ -113,6 +113,8 @@ class CategoriesController extends Controller
 
         $category->products()->delete();
 
+        MainPageCategory::where('category_id', $id)->delete();
+
         $category->delete();
 
         return redirect()->route('categories');
