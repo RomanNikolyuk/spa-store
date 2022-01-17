@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="" />
+    <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -242,7 +245,7 @@
       <workItem from="1638990239710" duration="24000" />
       <workItem from="1642248621411" duration="14000" />
       <workItem from="1642369793745" duration="2802000" />
-      <workItem from="1642446760696" duration="2134000" />
+      <workItem from="1642446760696" duration="2760000" />
     </task>
     <servers />
   </component>

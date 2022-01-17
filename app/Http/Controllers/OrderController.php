@@ -38,16 +38,11 @@ class OrderController extends Controller
         $this->sendMail($ready_products ?? [], $created_order_id);
     }
 
+    /*
+     *  Увага! Цей метод надсилав лист, проте github не дозволяє цього запушити
+     */
     public function sendMail($products, $order_id)
     {
-        $mgClient = Mailgun::create('e6c65b078ad6f235dcab946d18e4b5ff-28d78af2-7dcc0424', 'https://api.mailgun.net/v3/sandbox9e8fb193bfd947f8ac2848fe77995e58.mailgun.org');
-
-        $mgClient->messages()->send('sandbox9e8fb193bfd947f8ac2848fe77995e58.mailgun.org', [
-            'from' => 'orders@dzvin.com.ua',
-            'to' => 'roman.nikolyuk@gmail.com',
-            'subject' => 'Нове замовлення (⌐■_■)',
-            'html' => view('mail', ['products' => $products, 'order_id' => $order_id])->render()
-        ]);
 
     }
 }
