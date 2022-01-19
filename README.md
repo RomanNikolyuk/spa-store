@@ -4,7 +4,7 @@
 
 ### Клонуємо репозиторій
 
-    git clone https://github.com/SosokBobra/spa-store.git
+    git clone https://github.com/RomanNikolyuk/spa-store.git
 
 ### Встановлюємо Composer залежності
     
