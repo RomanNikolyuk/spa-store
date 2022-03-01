@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Components\ImageTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SliderRequest;
+use App\Models\Image;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class SliderController extends Controller
     {
         $slides = Slider::all();
 
-        return view('sliders.sliders')->with('slides', $slides);
+        return view('sliders.sliders')->with(compact('slides'));
     }
 
     public function new()
@@ -21,54 +22,49 @@ class SliderController extends Controller
         return view('sliders.view_slide');
     }
 
-    public function save_new(Request $request): \Illuminate\Http\RedirectResponse
+    public function save_new(SliderRequest $request)
     {
         $data = $request->except('_token');
 
-        Slider::create($data);
-
-        $inserted_id = Slider::latest()->first()->id;
+        $insertedId = Slider::create($data)->id;
 
         if ($request->hasFile('image')) {
             $img = $request->file('image');
 
-            ImageTable::save($img, $inserted_id, 'slider');
+            Image::put($img, $insertedId, 'slider');
         } else {
             return back()->with('error', 'Картинку не завантажено!');
         }
 
-
-        return redirect()->route('slider');
+        return redirect()->route('slider')->with(['success' => 'Слайд додано']);
     }
 
     public function edit($id)
     {
         $slide = Slider::find($id);
 
-        return view('sliders.view_slide')->with('slide', $slide);
+        return view('sliders.view_slide')->with(compact('slide'));
     }
 
-    public function save_edit(Request $request, $id): \Illuminate\Http\RedirectResponse
+    public function save_edit(SliderRequest $request, $id)
     {
         $slide = Slider::find($id);
         $data = $request->except('_token', '_method');
 
-
         if ($request->hasFile('image')) {
             $img = $request->file('image');
-            ImageTable::save($img, $slide->id, 'slider');
+            Image::put($img, $slide->id, 'slider');
         }
 
         $slide->update($data);
 
-        return redirect()->route('slider');
-
+        return redirect()->route('slider')->with(['success' => 'Успішно змінено']);
     }
 
-    public function delete($id): \Illuminate\Http\RedirectResponse
+    public function delete($id)
     {
         Slider::find($id)->delete();
 
-        return redirect()->route('slider');
+        return redirect()->route('slider')->with(['success' => 'Слайд видалено 🤗']);
     }
 }

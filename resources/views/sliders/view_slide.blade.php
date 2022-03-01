@@ -13,6 +13,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
+                <x-error-messages/>
+
                 <div
                     class=" w-full justify-center align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
 
@@ -31,7 +33,7 @@
                                        for="grid-first-name">
                                     Заголовок
                                 </label>
-                                <input value="{{ $slide->big_text ?? '' }}"
+                                <input value="{{ $slide->big_text ?? old('big_text') }}"
                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        id="grid-first-name" name="big_text" type="text" placeholder="">
                             </div>
@@ -44,7 +46,7 @@
                                 </label>
                                 <textarea name="small_text_1"
                                           class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                                          id="small_desc" value="">{{ $slide->small_text_1 ?? '' }}</textarea>
+                                          id="small_desc" value="">{{ $slide->small_text_1 ?? old('small_text_1') }}</textarea>
                             </div>
 
                             <div class="w-full mb-8">
@@ -55,7 +57,7 @@
 
                                 <textarea name="small_text_2"
                                        class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                                          id="small_desc" value="">{{ $slide->small_text_2 ?? '' }}</textarea>
+                                          id="small_desc" value="">{{ $slide->small_text_2 ?? old('small_text_2') }}</textarea>
                             </div>
 
 
@@ -66,7 +68,7 @@
                                 </label>
                                 <textarea name="button_text"
                                           class="no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                                          id="big_desc">{{ $slide->button_text ?? '' }}</textarea>
+                                          id="big_desc">{{ $slide->button_text ?? old('button_text') }}</textarea>
                             </div>
 
                             <div class="w-full mb-8">

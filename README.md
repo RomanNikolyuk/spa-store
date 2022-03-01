@@ -4,13 +4,13 @@
 
 ### Клонуємо репозиторій
 
-    git clone https://github.com/SosokBobra/spa-store.git
+    git clone https://github.com/RomanNikolyuk/spa-store.git
 
 ### Встановлюємо Composer залежності
-    
+
     composer i
 
-### Створюємо .env файл за прикладом 
+### Створюємо .env файл за прикладом
     ...
 
 ### База даних
@@ -21,10 +21,10 @@
 
 ### Адмінка
 Пропишіть шлях /admin і введіть наступні дані:
-    
+
     admin@spa-store.pp.ua
     admin
- 
+
 
 І все, можна насолоджуватись моїм ~~говнокодом~~ сайтом, написаним рік тому
 

@@ -8,30 +8,52 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
+
+                <x-success-message/>
+
+                @if($products->count() < 8)
+                    <div class="bg-red-300 border-t-4 border-red-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+                         role="alert">
+                        <div class="flex">
+                            <div class="py-1">
+                                <svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20">
+                                    <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="font-bold">Попередження</p>
+                                <p class="text-sm">Кількість продуктів менша 8. Дещо може працювати некоректно</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div
-                    class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
+                        class="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
                     <div class="flex justify-between">
                         <div class="inline-flex border rounded w-7/12 px-2 lg:px-6 h-12 bg-transparent">
                             <div class="flex flex-wrap items-stretch w-full h-full mb-6 relative">
                                 <div class="flex">
                                     <span
-                                        class="flex items-center leading-normal bg-transparent rounded rounded-r-none border border-r-0 border-none lg:px-3 py-2 whitespace-no-wrap text-grey-dark text-sm">
+                                            class="flex items-center leading-normal bg-transparent rounded rounded-r-none border border-r-0 border-none lg:px-3 py-2 whitespace-no-wrap text-grey-dark text-sm">
                                         <svg width="18" height="18" class="w-4 lg:w-auto" viewBox="0 0 18 18"
                                              fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
-                                                d="M8.11086 15.2217C12.0381 15.2217 15.2217 12.0381 15.2217 8.11086C15.2217 4.18364 12.0381 1 8.11086 1C4.18364 1 1 4.18364 1 8.11086C1 12.0381 4.18364 15.2217 8.11086 15.2217Z"
-                                                stroke="#455A64" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    d="M8.11086 15.2217C12.0381 15.2217 15.2217 12.0381 15.2217 8.11086C15.2217 4.18364 12.0381 1 8.11086 1C4.18364 1 1 4.18364 1 8.11086C1 12.0381 4.18364 15.2217 8.11086 15.2217Z"
+                                                    stroke="#455A64" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M16.9993 16.9993L13.1328 13.1328" stroke="#455A64"
                                                   stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
                                     </span>
                                 </div>
-                    <form>
-                        <input type="text"
-                               class="flex-shrink flex-grow flex-auto leading-normal tracking-wide w-full h-full flex-1 border border-none border-l-0 rounded rounded-l-none px-3 relative focus:outline-none text-xxs lg:text-xs lg:text-base text-gray-500 font-thin"
-                               placeholder="Пошук..." name="search">
-                    </form>
 
+
+                                <form>
+                                    <input type="text"
+                                           class="flex-shrink flex-grow flex-auto leading-normal tracking-wide w-full h-full flex-1 border border-none border-l-0 rounded rounded-l-none px-3 relative focus:outline-none text-xxs lg:text-xs lg:text-base text-gray-500 font-thin"
+                                           placeholder="Пошук..." name="search">
+                                </form>
 
 
                             </div>
@@ -39,7 +61,7 @@
                         </div>
                     </div>
                     <a href="{{ route('products.new') }}"
-                            class="mt-5 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">
+                       class="mt-5 inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-700 rounded-full shadow ripple hover:shadow-lg hover:bg-blue-800 focus:outline-none">
                         Новий продукт
                     </a>
                 </div>
@@ -47,7 +69,7 @@
 
                 @if($products->count() > 0)
                     <div
-                        class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
+                            class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
                         <table class="min-w-full">
                             <thead>
                             <tr>
