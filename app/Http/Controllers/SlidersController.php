@@ -6,19 +6,15 @@ use App\Models\Slider;
 
 class SlidersController extends Controller
 {
+    // TODO: переписати логіку картинок!!!!
     public function api()
     {
-        $sliders = Slider::all();
+        $sliders = Slider::get();
 
-        $output = [];
         foreach ($sliders as $slider) {
-            $slider->image = $slider->image;
-
-            $output[] = $slider;
+            $slider->image = $slider->img->title;
         }
 
-        $output = json_encode($output);
-
-        return $output;
+        return $sliders;
     }
 }

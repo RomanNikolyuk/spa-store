@@ -8,52 +8,49 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    /*
+     * Returns Main Page categories in json
+     */
     public function api()
     {
-        $categories_ids = MainPageCategory::all();
         $output = [];
+        $mainPageCategories = MainPageCategory::all();
 
-        foreach ($categories_ids as $id) {
-            $target_category = $id->category;
+        foreach ($mainPageCategories as $categoryId) {
+            $category = $categoryId->category;
 
-            if ($target_category->parent_id !== 0) {
-                $parent_cat = Category::find($target_category->parent_id);
+            if ($category->parent_id !== 0) {
+                $parentCategory = Category::findOrFail($category->parent_id);
 
-                $target_category->url = 'catalog/'.$parent_cat->alias.'/'.$target_category->alias;
+                $category->url = 'catalog/' . $parentCategory->alias . '/' . $category->alias;
             } else {
-                $target_category->url = 'catalog/'.$target_category->alias;
+                $category->url = 'catalog/' . $category->alias;
             }
 
+            $category->img = $category->image->title ?? '';
 
-            $target_category->img = $target_category->image->title ?? '';
-
-
-            $output[] = $id->category;
+            $output[] = $categoryId->category;
         }
 
-        return json_encode($output);
+        return $output;
     }
+
+    /*
+     * Returns categories in catalog in json
+     */
 
     public function getChildren(Request $request)
     {
-        $parent_category_alias = $request->input('parent_category');
+        $parentCategoryAlias = $request->input('parent_category');
 
-        if ($parent_category_alias) {
-            $parent_category = Category::where('alias', $parent_category_alias)->first();
+        if ($parentCategoryAlias) {
+            $parentCategoryId = Category::where('alias', $parentCategoryAlias)->first()->id;
 
-            $children = Category::where('parent_id', $parent_category->id)->get();
-
-            $output = $children->toArray();
-
-            return json_encode($output);
+            $output = Category::where('parent_id', $parentCategoryId)->get();
         } else {
-            $parent_categories = Category::where('parent_id', 0)->get();
-
-            $output = $parent_categories->toArray();
-
-            return json_encode($output);
+            $output = Category::where('parent_id', 0)->get();
         }
 
-
+        return $output;
     }
 }

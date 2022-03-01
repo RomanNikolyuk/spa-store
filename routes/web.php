@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductsController as AdminProductsController;
 use App\Http\Controllers\Admin\CategoriesController as AdminCategoriesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\SliderController as AdminSlidersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,16 +22,28 @@ use App\Http\Controllers\Admin\SliderController as AdminSlidersController;
 |
 */
 
+require __DIR__ . '/auth.php';
+require __DIR__ . '/api.php';
 
+Route::view('/', 'index');
+Route::view('catalog/{alias?}/{alias2?}', 'index');
+Route::view('item/{id}', 'index')->name('item');
+Route::view('wishlist', 'index');
+Route::view('cart', 'index');
+
+/****** ADMIN ROUTES ******/
 Route::prefix('admin')->middleware('auth')->group(function () {
-
     Route::redirect('/', '/admin/dashboard');
 
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::get('dashboard/{id}', [DashboardController::class, 'view'])->name('dashboard.view');
 
-    Route::match(['get', 'post'],'dashboard/{id}/changeStatus', [DashboardController::class, 'changeStatus'])->name('dashboard.changeStatus');
+    Route::match(
+        ['get', 'post'],
+        'dashboard/{id}/changeStatus',
+        [DashboardController::class, 'changeStatus']
+    )->name('dashboard.changeStatus');
 
     Route::get('products', [AdminProductsController::class, 'products'])->name('products');
 
@@ -41,14 +54,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('products/{id}', [AdminProductsController::class, 'save_edit'])->name('products.save_edit');
     Route::delete('products/{id}', [AdminProductsController::class, 'delete'])->name('products.delete');
 
-
     Route::get('categories', [AdminCategoriesController::class, 'categories'])->name('categories');
     Route::get('categories/new', [AdminCategoriesController::class, 'new'])->name('categories.new');
     Route::get('categories/{category_id}', [AdminCategoriesController::class, 'edit'])->name('categories.edit');
 
-
     Route::post('categories', [AdminCategoriesController::class, 'save_new'])->name('categories.save_new');
-    Route::put('categories/{category_id}', [AdminCategoriesController::class, 'save_edit'])->name('categories.save_edit');
+    Route::put(
+        'categories/{category_id}',
+        [AdminCategoriesController::class, 'save_edit']
+    )->name('categories.save_edit');
     Route::delete('categories/{category_id}', [AdminCategoriesController::class, 'delete'])->name('categories.delete');
 
     Route::get('slider', [AdminSlidersController::class, 'slider'])->name('slider');
@@ -59,30 +73,3 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('slider/new', [AdminSlidersController::class, 'save_new'])->name('slider.save_new');
     Route::delete('slider/{id}', [AdminSlidersController::class, 'delete'])->name('slider.delete');
 });
-
-require __DIR__.'/auth.php';
-
-Route::prefix('api')->group(function () {
-
-    Route::get('sliders', [SlidersController::class, 'api']);
-
-    Route::get('main-page-products', [ProductsController::class, 'mainPage']);
-
-    Route::get('main-page-categories', [CategoriesController::class, 'api']);
-
-    Route::get('products', [ProductsController::class, 'catalog']);
-
-    Route::get('product', [ProductsController::class, 'viewOne']);
-
-    Route::get('get-children-categories', [CategoriesController::class, 'getChildren']);
-
-    Route::get('order', [OrderController::class, 'api']);
-});
-
-
-Route::view('/', 'index');
-Route::view('catalog/{alias?}/{alias2?}', 'index');
-Route::view('item/{id}', 'index')->name('item');
-Route::view('wishlist', 'index');
-Route::view('cart', 'index');
-

@@ -14,6 +14,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
+                <x-error-messages/>
                 <div
                     class="w-full justify-center align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
 
@@ -33,7 +34,7 @@
                                        for="grid-first-name">
                                     Ім'я
                                 </label>
-                                <input value="{{ $category->title ?? '' }}"
+                                <input value="{{ $category->title ?? old('title') }}"
                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                        id="grid-first-name" name="title" type="text" placeholder="Вироби з металу">
                             </div>
@@ -44,7 +45,7 @@
                                        for="grid-password">
                                     Батьківський пункт меню
                                 </label>
-                                {!! Form::select('parent_id', $categories, isset($category) ? $category->parent->id ?? '' : '', ['class' => 'border border-gray-200']) !!}
+                                {!! Form::select('parent_id', $categories, isset($category) ? $category->parent->id ?? old('parent_id') : '', ['class' => 'border border-gray-200']) !!}
                             </div>
 
 
@@ -56,7 +57,7 @@
 
                                 <input
                                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                       id="grid-first-name" name="mainpage_category" type="checkbox" {{ isset($category) && $category->main_page ? 'checked' : null }}>
+                                       id="grid-first-name" name="mainpage_category" type="checkbox" {{ isset($category) && $category->main_page ? 'checked' : old('mainpage_category') }}>
                             </div>
 
                             <div class="w-full mb-8">
@@ -72,7 +73,7 @@
                                             <path
                                                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/>
                                         </svg>
-                                        <span class="mt-2 text-base leading-normal">Виберіть файли</span>
+                                        <span class="mt-2 text-base leading-normal">Виберіть картинку</span>
                                         <input type='file' class="hidden" name="image">
                                     </label>
                                 </div>

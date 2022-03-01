@@ -2,47 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Mailgun\Mailgun;
 
 class OrderController extends Controller
 {
-    public function api(Request $request)
+    public function api(OrderRequest $request): Response
     {
-        $this->validate($request, [
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
-            'delivery_address' => 'required|min:5',
-            'telephone' => 'required|min:8',
-            'email' => 'required|email'
-        ]);
-
         $data = $request->except('products');
         $data['status'] = 1;
 
-        Order::create($data);
+        $createdOrderId = Order::create($data)->id;
 
-        $created_order_id = Order::latest()->first()->id;
+        $productsIds = json_decode($request->input('products'));
 
-        $products = json_decode($request->input('products'));
+        foreach ($productsIds as $productId) {
+            OrderProduct::create(['order_id' => $createdOrderId, 'product_id' => $productId]);
 
-        foreach ($products as $product) {
-            OrderProduct::create(['order_id' => $created_order_id, 'product_id' => $product]);
-
-            $ready_products[] = Product::findOrFail($product);
+            $products[] = Product::findOrFail($productId);
         }
 
-        $this->sendMail($ready_products ?? [], $created_order_id);
+        $this->sendMail($products ?? [], $createdOrderId);
+
+        return response('Нове замовлення створено', 200);
     }
 
-    /*
-     *  Увага! Цей метод надсилав лист, проте github не дозволяє цього запушити
-     */
     public function sendMail($products, $order_id)
     {
-
     }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Components\Helpers;
-use App\Components\ImageTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\MainPageCategory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
@@ -16,94 +15,77 @@ class CategoriesController extends Controller
     {
         $categories = Category::all();
 
-
         return view('categories.categories')->with('categories', $categories);
     }
 
 
     public function new()
     {
-        $categories = Category::all();
+        $allCategories = Category::all();
 
-        $categories_result[0] = '';
-
-        foreach ($categories as $category) {
-
-            $categories_result[$category->id] = $category->title;
-
+        $categories[0] = '';
+        foreach ($allCategories as $category) {
+            $categories[$category->id] = $category->title;
         }
 
-        return view('categories.view_category')->with('categories', $categories_result);
+        return view('categories.view_category')
+            ->with(compact('categories'));
     }
 
     public function edit($id)
     {
         $category = Category::find($id);
+        $allCategories = Category::all();
+        $categories[0] = '';
 
-        $all_categories = Category::all();
-
-        $categories_result[0] = '';
-
-        foreach ($all_categories as $value) {
-
-            $categories_result[$value->id] = $value->title;
+        foreach ($allCategories as $cat) {
+            $categories[$cat->id] = $cat->title;
         }
 
-        return view('categories.view_category')->with('category', $category)->with('categories', $categories_result);
+        return view('categories.view_category')
+            ->with('category', $category)
+            ->with(compact('categories'));
     }
 
-    public function save_new(Request $request)
+    public function save_new(CategoryRequest $request)
     {
         $data = $request->except('_method', '_token');
-
         $data['alias'] = Str::slug($data['title']);
 
-        Category::create($data);
+        $insertedId = Category::create($data)->id;
+        $this->insertIntoMainPageProducts($insertedId);
 
-        $inserted_id = Category::latest()->first()->id;
-
-        $this->insertIntoMainPageProducts($inserted_id);
-
-        return redirect()->route('categories');
+        return redirect()->route('categories')->with(['success' => 'Категорію додано']);
     }
 
-    public function save_edit(Request $request, $id)
+    public function save_edit(CategoryRequest $request, $id)
     {
         $data = $request->except('_method', '_token');
-
         $category = Category::find($id);
-
 
         $data['alias'] = Str::slug($data['title']);
 
         $category->update($data);
-
         $this->insertIntoMainPageProducts($id);
 
-        return redirect()->route('categories');
-
+        return redirect()->route('categories')->with(['success' => 'Успішно змінено 😎']);
     }
 
-    public function insertIntoMainPageProducts($category_id)
+    public function insertIntoMainPageProducts($categoryId)
     {
-        $row = MainPageCategory::where('category_id', $category_id)->first();
+        $row = MainPageCategory::where('category_id', $categoryId)->first();
 
-        if (\request()->hasFile('image')) {
-            ImageTable::save(\request()->file('image'), $category_id, 'category');
+        if (request()->hasFile('image')) {
+            Image::put(request()->file('image'), $categoryId, 'category');
         }
 
-        if (\request('mainpage_category')) {
-            if (is_null($row))
-                MainPageCategory::create(['category_id' => $category_id]);
-        } else {
-
-            if (!is_null($row)) {
-                $row->delete();
+        if (request('mainpage_category')) {
+            if (is_null($row)) {
+                MainPageCategory::create(['category_id' => $categoryId]);
             }
-
+        } else {
+            !is_null($row) ? $row->delete() : null;
         }
-
-
     }
 
 
@@ -112,11 +94,10 @@ class CategoriesController extends Controller
         $category = Category::find($id);
 
         $category->products()->delete();
-
         MainPageCategory::where('category_id', $id)->delete();
 
         $category->delete();
 
-        return redirect()->route('categories');
+        return redirect()->route('categories')->with(['success' => 'Категорію видалено ☺']);
     }
 }

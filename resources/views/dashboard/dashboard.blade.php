@@ -13,10 +13,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
-                
+
+                <x-success-message/>
+
                 @if($orders->count() > 0)
                     <div
-                        class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
+                            class="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
                         <table class="min-w-full">
                             <thead>
                             <tr>
@@ -46,7 +48,7 @@
                             </thead>
                             <tbody class="bg-white">
 
-                            @foreach($orders as $order)
+                            @foreach($orders as $count => $order)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                         <div class="flex items-center">
@@ -66,7 +68,7 @@
 
                                     <td class="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
                                         <span
-                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                                class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
                                               class="absolute inset-0 bg-{{ $order->statusColor }}-200 opacity-50 rounded-full"></span>
                                         <span class="relative text-xs">
@@ -87,7 +89,7 @@
                                             {{ $product->title }}; <br>
                                             @var($sum, $sum+$product->price)
                                         @endforeach
-                                        Сума замовлення: {{ $sum }}
+                                        Сума замовлення: <strong>{{ $sum }}</strong> грн
                                     </td>
 
 
@@ -98,7 +100,7 @@
 
                                     <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
                                         <a href="{{ route('dashboard.view', $order->id) }}"
-                                            class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
+                                           class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
                                             Переглянути 👁
                                         </a>
                                     </td>
@@ -112,9 +114,9 @@
                             <div>
                                 <p class="text-sm leading-5 text-blue-700">
                                     Показуємо від
-                                    <span class="font-medium">{{ $orders->first()->id }}</span>
-                                    до
                                     <span class="font-medium">{{ $orders->last()->id }}</span>
+                                    до
+                                    <span class="font-medium">{{ $count+1 }}</span>
                                     із
                                     <span class="font-medium">{{ $orders->count() }}</span>
                                     замовлень
