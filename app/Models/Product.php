@@ -72,6 +72,17 @@ class Product extends Model
                 }
             };
         }*/
+
+    public function delete()
+    {
+        foreach ($this->images()->get() as $image) {
+            $image->product_id = 0;
+            $image->save();
+        }
+
+        return parent::delete();
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

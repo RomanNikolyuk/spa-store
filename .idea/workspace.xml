@@ -2,8 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a643f0f4-723b-4193-9c7f-3876881b5b8c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/4XldzNONMydZ.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/Agte3qIButMt.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/B3MbmeOGL5wc.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/HFfhwy2DPPwr.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/KN8CNH5CkFer.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/PHfiFwFiPcb9.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/Sr0vzY4fXb99.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/U1YsC3baLe1L.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/bAXhArQkOkwo.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/cGNuRX8b5VhX.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/hfn1xWMrT0sP.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/jtqHFsvbbW93.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/nYcIXlTS4Oxm.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/pl2Sk7L3COSI.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/qwicOuElklgv.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/xbanner-2jpgpagespeedicise4yv86cswebp.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/products/y0ECeKWz6vRs.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SlidersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/SlidersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/products/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/products/products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +193,18 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
     </include_path>
   </component>
   <component name="ProjectId" id="1lTzd4EHI4tC2ivblUSjlMmLXab" />
@@ -182,9 +220,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/xampp/htdocs/mykyta-project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../push-gun" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -246,6 +284,18 @@
       <workItem from="1642248621411" duration="14000" />
       <workItem from="1642369793745" duration="2802000" />
       <workItem from="1642446760696" duration="2760000" />
+      <workItem from="1642626420714" duration="189000" />
+      <workItem from="1643406501826" duration="2195000" />
+      <workItem from="1643408721769" duration="1210000" />
+      <workItem from="1643449426812" duration="1246000" />
+      <workItem from="1643753147070" duration="902000" />
+      <workItem from="1643796234106" duration="3150000" />
+      <workItem from="1644006701002" duration="25000" />
+      <workItem from="1644268230158" duration="13177000" />
+      <workItem from="1644963536099" duration="19962000" />
+      <workItem from="1645561558748" duration="23000" />
+      <workItem from="1645652811286" duration="4411000" />
+      <workItem from="1645825351737" duration="26888000" />
     </task>
     <servers />
   </component>

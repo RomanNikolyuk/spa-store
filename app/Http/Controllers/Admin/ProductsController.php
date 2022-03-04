@@ -48,15 +48,13 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors(['image' => 'Картинка обов\'язкова']);
         }
 
-        Product::create($data);
-
-        $inserted_id = Product::latest()->first()->id;
+        $inserted_id = Product::create($data)->id;
 
         foreach ($request->file('image') as $image) {
             Image::put($image, $inserted_id, 'product');
         }
 
-        $this->insertIntoRecommended($inserted_id);
+        $this->insertIntoRecommended($inserted_id, $request->has('recommended'));
 
         return redirect()->route('products')->with(['success' => 'Новий продукт створено 🔥']);
     }
@@ -75,16 +73,16 @@ class ProductsController extends Controller
 
         $product->update($data);
 
-        $this->insertIntoRecommended($id);
+        $this->insertIntoRecommended($id, $request->has('recommended'));
 
         return redirect()->route('products')->with(['success' => 'Продукт оновлено 🍻']);
     }
 
-    public function insertIntoRecommended($product_id)
+    public function insertIntoRecommended(int $product_id, bool $recommended)
     {
         $row = RecommendedProducts::where('product_id', $product_id)->first();
 
-        if (request()->has('recommended')) {
+        if ($recommended) {
             if (is_null($row)) {
                 RecommendedProducts::create(['product_id' => $product_id]);
             }

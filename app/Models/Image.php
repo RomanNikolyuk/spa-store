@@ -37,7 +37,7 @@ class Image extends Model
 
     public static function put(object $image, int $id, string $type): string
     {
-        $image_name = Str::slug($image->getClientOriginalName()) . '.' . $image->getClientOriginalExtension();
+        $image_name = Str::random(12) . '.' . $image->getClientOriginalExtension();
 
         $image_path = '/images/';
         $image_path .= match ($type) {
@@ -45,12 +45,6 @@ class Image extends Model
             'slider' => 'sliders/',
             'category' => 'categories/'
         };
-
-        $image_row = self::where('title', 'LIKE', "%$image_name")->first();
-
-        if (!is_null($image_row)) {
-            $image_name = Str::random(12) . '.' . $image->getClientOriginalExtension();
-        }
 
         $image->move(public_path() . $image_path, $image_name);
 

@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductsController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProductsController;
+use App\Http\Controllers\Api\SlidersController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SlidersController;
 
 /*
 |--------------------------------------------------------------------------
