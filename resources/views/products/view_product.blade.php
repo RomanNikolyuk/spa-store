@@ -1,5 +1,8 @@
 <x-app-layout>
-    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+    @section('styles')
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    @endsection
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
@@ -14,7 +17,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
-                <x-error-message/>
+                <x-error-messages/>
 
                 @error('image')
                 <div class="bg-red-300 border-t-4 border-red-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
@@ -36,8 +39,6 @@
 
                 <div
                     class=" w-full justify-center align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
-
-
 
                     <form class="w-full max-w-lg"
                           action="{{ isset($product) ? route('products.save_edit', $product->id) : route('products.save_new') }}"
@@ -91,7 +92,7 @@
 
 
                             <div class="w-full mb-8">
-                                <label
+                                {{--<label
                                     class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue-500 rounded-lg shadow-lg tracking-wide uppercase cursor-pointer hover:bg-blue-500 hover:text-white">
                                     <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                          viewBox="0 0 20 20">
@@ -100,7 +101,8 @@
                                     </svg>
                                     <span class="mt-2 text-base leading-normal">Виберіть картинку</span>
                                     <input type='file' class="hidden" multiple="" name="image[]">
-                                </label>
+                                </label>--}}
+                                <input type="file" multiple="multiple" name="image">
                             </div>
 
 
@@ -154,8 +156,105 @@
             </div>
         </div>
     </div>
-    <script>
-        ClassicEditor.create(document.querySelector('#small_desc'));
-        ClassicEditor.create(document.querySelector('#big_desc'));
-    </script>
+
+        @section('scripts')
+            <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
+            <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+            <script>
+                ClassicEditor.create(document.querySelector('#small_desc'));
+                ClassicEditor.create(document.querySelector('#big_desc'));
+
+                const inputElement = document.querySelector('input[type="file"]');
+                const pond = FilePond.create(inputElement);
+                document.querySelector('.filepond--credits').remove()
+
+                const labels = {
+                    // labelIdle: 'Drag & Drop your files or <span class="filepond--label-action"> Browse </span>'
+                    labelIdle: 'Перетягніть або виберіть <span class="filepond--label-action"> картинку </span>',
+                    // labelInvalidField: 'Field contains invalid files',
+                    labelInvalidField: 'точно картинка?',
+// labelFileWaitingForSize: 'чекають розмір',
+                    labelFileWaitingForSize: 'Вкажіть розмір',
+// labelFileSizeNotAvailable: 'Грація',
+                    labelFileSizeNotAvailable: 'Розмір не підтримується',
+// labelFileLoading:"завантаження",
+                    labelfileloading: 'очікування',
+// labelFileLoadError: 'помилка при завантаженні',
+                    labelFileLoadError: 'помилка при очікуванні',
+// labelFileProcessing:"Завантаження",
+                    labelFileProcessing: 'Завантажую',
+// labelFileProcessingComplete :' завантаження завершено',
+                    labelFileProcessingComplete: 'Успішно',
+// labelFileProcessingAborted: 'завантаження скасовано',
+                    labelFileProcessingAborted: 'Відмінено',
+// labelFileProcessingError: 'помилка при відправці',
+                    labelFileProcessingError: 'Помилка',
+// labelFileProcessingRevertError: 'помилка під час повернення',
+                    labelFileProcessingRevertError: 'при поверненні помилка',
+// labelFileRemoveError: 'помилка при видаленні',
+                    labelFileRemoveError: 'помилка при видаленні',
+// labelTapToCancel: 'Натисніть для скасування',
+                    labelTapToCancel: 'Натисніть для скасування',
+// labelTapToRetry: 'Натисніть для повтору',
+                    labelTapToRetry: 'Відмінити',
+// labelTapToUndo: 'Натисніть для скасування',
+                    labelTapToUndo: 'Відмінити',
+// labelButtonRemoveItem: 'видалити',
+                    labelButtonRemoveItem: 'видалити',
+                labelButtonAbortItemLoad: 'припинено',
+// labelButtonRetryItemLoad: 'повторити',
+                    labelButtonRetryItemLoad :' повторіть спробу',
+// labelButtonAbortItemProcessing: 'скасувати',
+                    labelButtonAbortItemProcessing: 'скасування',
+// labelButtonUndoItemProcessing: 'скасувати',
+                    labelButtonUndoItemProcessing: 'скасування останньої дії',
+// labelButtonRetryItemProcessing :' повторити спробу',
+                    labelButtonRetryItemProcessing :' повторіть спробу',
+// labelbuttonprocessitem: 'завантажити',
+                    labelbuttonprocessitem: 'Завантаження',
+// labelMaxFileSizeExceeded: 'Файл занадто великий',
+                    labelMaxFileSizeExceeded: 'Файл занадто великий',
+// labelmaxfilesize: 'максимальний розмір файлу дорівнює {filesize}',
+                    labelMaxFileSize: 'максимальний розмір файлу: {розмір файлу}',
+// labelMaxTotalFileSizeExceeded: 'перевищено максимальний загальний розмір',
+                    labelMaxTotalFileSizeExceeded: 'перевищено максимальний розмір',
+// labelmaxtotalfilesize: 'максимальний загальний розмір файлу дорівнює {filesize}',
+                    labelMaxTotalFileSize: 'максимальний розмір файлу: {розмір файлу}',
+// labelfiletypenotallowed: 'файл неприпустимого типу',
+                    labelfiletypenotallowed :' файл неправильного типу',
+// fileValidateTypeLabelExpectedTypes: 'очікує {allbutlasttype} або {lasttype}',
+                    fileValidateTypeLabelExpectedTypes: 'Tipos de arquivo suportados são {allbutlasttype} або {lasttype}',
+// imagevalidatesizelabelformaterror :' тип зображення не підтримується',
+                    imagevalidatesizelabelformaterror :' тип зображення не підтримується',
+// imageValidateSizeLabelImageSizeToosmall: 'зображення занадто маленьке',
+                    imageValidateSizeLabelImageSizeToosmall: 'зображення занадто маленьке',
+// imageValidateSizeLabelImageSizeToobig: 'зображення занадто велике',
+                    imageValidateSizeLabelImageSizeToobig: 'занадто велике зображення',
+// imageValidateSizeLabelExpectedMinsize: 'мінімальний розмір - {властивість minwidth} x {властивість minheight}',
+                    imageValidateSizeLabelExpectedMinsize: 'мінімальний розмір: {властивість minwidth} x {властивість minheight}',
+// imageValidateSizeLabelExpectedMaxsize: 'максимальний розмір - {значення maxwidth} x {Значення maxheight}',
+                    imageValidateSizeLabelExpectedMaxsize: 'максимальний розмір: {значення maxwidth} x {Значення maxheight}',
+// imagevalidatesizelabelimageresolutiontoolow: 'роздільна здатність занадто низька',
+                    imagevalidatesizelabelimageresolutiontoolow: 'роздільна здатність занадто низька',
+// imageValidateSizeLabelImageResolutiontoohigh: 'роздільна здатність занадто висока',
+                    imageValidateSizeLabelImageResolutiontoohigh: 'роздільна здатність занадто висока',
+// imageValidateSizeLabelExpectedMinresolution: 'Мінімальна роздільна здатність дорівнює {minResolution}',
+                    imageValidateSizeLabelExpectedMinresolution: 'Мінімальна роздільна здатність: {minResolution}',
+// imageValidateSizeLabelExpectedMaxresolution: 'Максимальна роздільна здатність дорівнює {maxResolution}'
+                    imageValidateSizeLabelExpectedMaxresolution: 'Максимальна роздільна здатність: {максимальна роздільна здатність}'
+                };
+
+                FilePond.setOptions({
+                    server: {
+                        url: '{{ route('products.upload') }}',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    },
+                    ...labels
+                });
+
+            </script>
+        @endsection
 </x-app-layout>

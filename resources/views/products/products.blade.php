@@ -140,12 +140,12 @@
                             <div>
                                 <p class="text-sm leading-5 text-blue-700">
                                     Показуємо від
-                                    <span class="font-medium">{{ $products->first()->id }}</span>
-                                    до
                                     <span class="font-medium">{{ $products->last()->id }}</span>
+                                    до
+                                    <span class="font-medium">{{ $products->first()->id }}</span>
                                     із
                                     <span class="font-medium">{{ $products->count() }}</span>
-                                    замовлень
+                                    продуктів
                                 </p>
                             </div>
                             <div>

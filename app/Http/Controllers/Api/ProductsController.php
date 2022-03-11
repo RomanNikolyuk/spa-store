@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\RecommendedProducts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProductsController extends Controller
 {
@@ -40,88 +41,92 @@ class ProductsController extends Controller
 
     public function viewOne(Request $request)
     {
-        $product = Product::where('id', $request->input('id'))->first();
+        return Cache::rememberForever('product-'.$request->id, function () use ($request) {
+            $product = Product::find($request->id);
 
-        // Getting Related Products
-        $related = Product::where('category_id', $product->category_id)
-            ->where('id', 'NOT LIKE', $product->id)
-            ->limit(4)
-            ->get()
-            ->reduce(function ($arr, $item) {
-                if (!empty($item->images)) {
-                    $item->image = $item->images[0];
-                }
+            // Getting Related Products
+            $related = Product::where('category_id', $product->category_id)
+                ->where('id', 'NOT LIKE', $product->id)
+                ->limit(4)
+                ->get()
+                ->reduce(function ($arr, $item) {
+                    if (!empty($item->images)) {
+                        $item->image = $item->images[0];
+                    }
 
-                $arr[] = $item;
-                return $arr;
-            });
+                    $arr[] = $item;
+                    return $arr;
+                });
 
-        if (is_null($related)) {
-            $related = Product::all()->random(4);
+            if (is_null($related)) {
+                $related = Product::all()->random(4);
 
-            foreach ($related as $value) {
-                if (!empty($value->images)) {
-                    $value->image = $value->images[0];
+                foreach ($related as $value) {
+                    if (!empty($value->images)) {
+                        $value->image = $value->images[0];
+                    }
                 }
             }
-        }
 
-        $product->related = $related;
-        $category = $product->category;
-        // ???????????? TODO: убрати
-        $product->images = $product->images;
+            $product->related = $related;
+            $category = $product->category;
+            // ???????????? TODO: убрати
+            $product->images = $product->images;
 
-        // Creating Categories string
-        if ($category->parent_id !== 0) {
-            $parent_category = Category::find($category->parent_id);
+            // Creating Categories string
+            if ($category->parent_id !== 0) {
+                $parent_category = Category::find($category->parent_id);
 
-            $categories = $parent_category->title . ' -> ' . $category->title;
-        } else {
-            $categories = $category->title;
-        }
+                $categories = $parent_category->title . ' -> ' . $category->title;
+            } else {
+                $categories = $category->title;
+            }
 
-        $product->categories = $categories;
-        $product->reviews = [];
+            $product->categories = $categories;
+            $product->reviews = [];
 
-        return $product;
+            return $product;
+        });
     }
 
     public function mainPage()
     {
-        $products = [];
+        return Cache::rememberForever('mainPageProducts', function () {
+            $products = [];
 
-        // Recommended Products
-        if (RecommendedProducts::count() >= 8 && Product::count() >= 8) {
-            $recommendedIds = RecommendedProducts::limit(8)->get();
+            // Recommended Products
+            if (RecommendedProducts::count() >= 8 && Product::count() >= 8) {
+                $recommendedIds = RecommendedProducts::limit(8)->get();
 
-            foreach ($recommendedIds as $productId) {
-                $product = $productId->product;
+                foreach ($recommendedIds as $productId) {
+                    $product = $productId->product;
 
-                if (is_null($product)) {
-                    $productId->delete();
-                    continue;
+                    if (is_null($product)) {
+                        $productId->delete();
+                        continue;
+                    }
+
+                    $product->image = $product->images ? $product->images[0] : null;
+
+                    $product->type = 'recommended';
+
+                    $products[] = $product;
                 }
 
-                $product->image = $product->images ? $product->images[0] : null;
+                // New products
+                $newProducts = Product::limit(8)->orderBy('id', 'DESC')->get();
 
-                $product->type = 'recommended';
+                foreach ($newProducts as $newProduct) {
+                    $newProduct->image = $newProduct->images ? $newProduct->images[0] : null;
 
-                $products[] = $product;
+                    $newProduct->type = 'new';
+
+                    $products[] = $newProduct;
+                }
             }
 
-            // New products
-            $newProducts = Product::limit(8)->orderBy('id', 'DESC')->get();
-
-            foreach ($newProducts as $newProduct) {
-                $newProduct->image = $newProduct->images ? $newProduct->images[0] : null;
-
-                $newProduct->type = 'new';
-
-                $products[] = $newProduct;
-            }
-        }
-
-        return $products;
+            return $products;
+        });
     }
 
     /****** PRIVATE METHODS ******/

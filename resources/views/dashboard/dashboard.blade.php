@@ -116,7 +116,7 @@
                                     Показуємо від
                                     <span class="font-medium">{{ $orders->last()->id }}</span>
                                     до
-                                    <span class="font-medium">{{ $count+1 }}</span>
+                                    <span class="font-medium">{{ $orders->first()->id }}</span>
                                     із
                                     <span class="font-medium">{{ $orders->count() }}</span>
                                     замовлень

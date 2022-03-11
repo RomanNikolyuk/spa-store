@@ -18,7 +18,6 @@ class CategoriesController extends Controller
         return view('categories.categories')->with('categories', $categories);
     }
 
-
     public function new()
     {
         $allCategories = Category::all();

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\MainPageCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CategoriesController extends Controller
 {
@@ -14,26 +15,28 @@ class CategoriesController extends Controller
      */
     public function api()
     {
-        $output = [];
-        $mainPageCategories = MainPageCategory::all();
+        return Cache::rememberForever('mainPageCategories', function () {
+            $output = [];
+            $mainPageCategories = MainPageCategory::all();
 
-        foreach ($mainPageCategories as $categoryId) {
-            $category = $categoryId->category;
+            foreach ($mainPageCategories as $categoryId) {
+                $category = $categoryId->category;
 
-            if ($category->parent_id !== 0) {
-                $parentCategory = Category::findOrFail($category->parent_id);
+                if ($category->parent_id !== 0) {
+                    $parentCategory = Category::findOrFail($category->parent_id);
 
-                $category->url = 'catalog/' . $parentCategory->alias . '/' . $category->alias;
-            } else {
-                $category->url = 'catalog/' . $category->alias;
+                    $category->url = 'catalog/' . $parentCategory->alias . '/' . $category->alias;
+                } else {
+                    $category->url = 'catalog/' . $category->alias;
+                }
+
+                $category->img = $category->image->title ?? '';
+
+                $output[] = $categoryId->category;
             }
 
-            $category->img = $category->image->title ?? '';
-
-            $output[] = $categoryId->category;
-        }
-
-        return $output;
+            return $output;
+        });
     }
 
     /*

@@ -10,6 +10,9 @@
         </h2>
     </x-slot>
 
+    @section('styles')
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    @endsection
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -79,9 +82,6 @@
                                 </div>
 
                             </div>
-
-
-
 
                         </div>
 
