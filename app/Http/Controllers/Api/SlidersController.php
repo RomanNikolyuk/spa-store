@@ -7,7 +7,6 @@ use App\Models\Slider;
 
 class SlidersController extends Controller
 {
-    // TODO: переписати логіку картинок!!!!
     public function api()
     {
         $sliders = Slider::get();

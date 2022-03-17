@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Components\CollectionPaginator;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductsResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\RecommendedProducts;
@@ -29,7 +30,7 @@ class ProductsController extends Controller
         int|null $page,
         string|null $search,
         string|null $orderBy,
-    ): array {
+    ) {
         if (is_null($search)) {
             $products = $this->getCategoryProducts($category, $page, $orderBy);
         } else {
@@ -41,7 +42,7 @@ class ProductsController extends Controller
 
     public function viewOne(Request $request)
     {
-        return Cache::rememberForever('product-'.$request->id, function () use ($request) {
+        return Cache::rememberForever('product-' . $request->id, function () use ($request) {
             $product = Product::find($request->id);
 
             // Getting Related Products
@@ -70,8 +71,6 @@ class ProductsController extends Controller
 
             $product->related = $related;
             $category = $product->category;
-            // ???????????? TODO: убрати
-            $product->images = $product->images;
 
             // Creating Categories string
             if ($category->parent_id !== 0) {
@@ -85,7 +84,7 @@ class ProductsController extends Controller
             $product->categories = $categories;
             $product->reviews = [];
 
-            return $product;
+            return ProductsResource::collection(collect($product)->paginate($this->maxProductPerPage));
         });
     }
 
@@ -94,70 +93,53 @@ class ProductsController extends Controller
         return Cache::rememberForever('mainPageProducts', function () {
             $products = [];
 
-            // Recommended Products
-            if (RecommendedProducts::count() >= 8 && Product::count() >= 8) {
-                $recommendedIds = RecommendedProducts::limit(8)->get();
-
-                foreach ($recommendedIds as $productId) {
-                    $product = $productId->product;
-
-                    if (is_null($product)) {
-                        $productId->delete();
-                        continue;
-                    }
-
-                    $product->image = $product->images ? $product->images[0] : null;
-
-                    $product->type = 'recommended';
-
-                    $products[] = $product;
-                }
-
-                // New products
-                $newProducts = Product::limit(8)->orderBy('id', 'DESC')->get();
-
-                foreach ($newProducts as $newProduct) {
-                    $newProduct->image = $newProduct->images ? $newProduct->images[0] : null;
-
-                    $newProduct->type = 'new';
-
-                    $products[] = $newProduct;
-                }
+            if (RecommendedProducts::count() < 8 && Product::count() < 8) {
+                return [];
             }
 
-            return $products;
+            // Recommended Products
+            $recommendedIds = RecommendedProducts::limit(8)->get();
+            foreach ($recommendedIds as $productId) {
+                $product = $productId->product;
+
+                if (is_null($product)) {
+                    $productId->delete();
+                    continue;
+                }
+
+                $product->type = 'recommended';
+                $products[] = $product;
+            }
+
+            // New products
+            $newProducts = Product::limit(8)->orderBy('id', 'DESC')->get();
+            foreach ($newProducts as $newProduct) {
+                $newProduct->image = $newProduct->images ? $newProduct->images[0] : null;
+
+                $newProduct->type = 'new';
+
+                $products[] = $newProduct;
+            }
+
+            return ProductsResource::collection($products);
         });
     }
 
     /****** PRIVATE METHODS ******/
 
-    private function getCategoryProducts(string|null $category, int $page, string|null $orderBy): array
+    private function getCategoryProducts(string|null $category, int $page, string|null $orderBy)
     {
+        $return = [];
         if (!is_null($category)) {
             $searched_category = Category::where('alias', $category)->first();
 
-            foreach ($searched_category->products as $product) {
-                if (!empty($product->images)) {
-                    $product->image = $product->images[0];
-                }
-
-                $return[] = $product;
-            }
-
+            array_push($return, ...$searched_category->products);
 
             if ($searched_category->parent_id === 0) {
                 $children_categories = Category::where('parent_id', $searched_category->id)->get();
 
                 foreach ($children_categories as $children_category) {
-                    foreach ($children_category->products as $product) {
-                        $product->image = $product->images;
-
-                        if (!empty($product->image)) {
-                            $product->image = $product->image[0];
-                        }
-
-                        $return[] = $product;
-                    }
+                    array_push($return, ...$children_category->products);
                 }
             }
         } else {
@@ -167,22 +149,13 @@ class ProductsController extends Controller
                 $products = Product::paginate($this->maxProductPerPage);
             }
 
-            foreach ($products as $product) {
-                if (!empty($product->images)) {
-                    $product->image = $product->images[0];
-                }
-                $return[] = $product;
-            }
+            array_push($return, ...$products);
         }
 
-        return CollectionPaginator::paginate(
-            $return ?? [],
-            $this->maxProductPerPage,
-            $page
-        )->toArray()['data'];
+        return ProductsResource::collection(collect($return)->paginate($this->maxProductPerPage));
     }
 
-    private function getSearchedProducts(string $search, int $page): array
+    private function getSearchedProducts(string $search, int $page)
     {
         $products = Product::where('title', 'LIKE', "%$search%")->get();
 
@@ -196,11 +169,6 @@ class ProductsController extends Controller
             $ready_products[] = $product;
         }
 
-        return CollectionPaginator::paginate(
-            $ready_products ?? [],
-            $this->maxProductPerPage,
-            $page
-        )
-            ->toArray()['data'];
+        return ProductsResource::collection($ready_products ?? []);
     }
 }
