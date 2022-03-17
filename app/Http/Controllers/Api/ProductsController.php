@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Components\CollectionPaginator;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductsResource;
 use App\Models\Category;
