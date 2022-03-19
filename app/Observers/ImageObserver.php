@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Image;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 
 class ImageObserver
@@ -25,6 +26,7 @@ class ImageObserver
             }
         }
         $unusedImages->delete();
+        Cache::forget('mainPageProducts');
     }
 
     /**
@@ -35,7 +37,7 @@ class ImageObserver
      */
     public function updating(Image $image)
     {
-
+        Cache::forget('mainPageProducts');
     }
 
     /**
@@ -46,7 +48,7 @@ class ImageObserver
      */
     public function deleted(Image $image)
     {
-        //
+        Cache::forget('mainPageProducts');
     }
 
     /**

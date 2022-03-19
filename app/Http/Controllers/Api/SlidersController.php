@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Slider;
 
 class SlidersController extends Controller
 {
-    // TODO: переписати логіку картинок!!!!
     public function api()
     {
         $sliders = Slider::get();

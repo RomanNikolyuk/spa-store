@@ -9,12 +9,16 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\RecommendedProducts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductsController extends Controller
 {
+    public string $saveTmpDirectory = '/images/products/tmp/';
+    public string $saveFileDirectory = '/images/products/';
+
     public function products(Request $request)
     {
-        $products = Product::orderBy('updated_at', 'desc')->paginate(25);
+        $products = Product::orderBy('updated_at', 'desc')->with('category')->paginate(25);
 
         if ($request->has('search')) {
             $products = Product::where('title', 'LIKE', "%{$request->input('search')}%")
@@ -39,7 +43,6 @@ class ProductsController extends Controller
         return view('products.view_product')->with('categories', $this->getCategoriesArr());
     }
 
-
     public function save_new(ProductRequest $request)
     {
         $data = $request->except('_method', '_token', 'image');
@@ -48,17 +51,24 @@ class ProductsController extends Controller
             return redirect()->back()->withErrors(['image' => 'Картинка обов\'язкова']);
         }
 
-        Product::create($data);
+        $inserted_id = Product::create($data)->id;
 
-        $inserted_id = Product::latest()->first()->id;
+        $this->attachPhoto($inserted_id, $request);
 
-        foreach ($request->file('image') as $image) {
-            Image::put($image, $inserted_id, 'product');
-        }
-
-        $this->insertIntoRecommended($inserted_id);
+        $this->insertIntoRecommended($inserted_id, $request->has('recommended'));
 
         return redirect()->route('products')->with(['success' => 'Новий продукт створено 🔥']);
+    }
+
+    public function upload(Request $request)
+    {
+        abort_if(!$request->hasFile('image'), 400);
+
+        $folder = $this->saveTmpDirectory . now()->timestamp;
+
+        $request->image->move(public_path($folder), uniqid() . '.' . $request->image->getClientOriginalExtension());
+
+        return $folder;
     }
 
     public function save_edit(ProductRequest $request, $id)
@@ -66,25 +76,39 @@ class ProductsController extends Controller
         $data = $request->except('_method', '_token', 'image');
         $product = Product::find($id);
 
-        if (request()->hasFile('image')) {
-            $images = $request->file('image');
-            foreach ($images as $image) {
-                Image::put($image, $id, 'product');
-            }
+        if (request()->has('image')) {
+            $this->attachPhoto($id, $request);
         }
 
         $product->update($data);
 
-        $this->insertIntoRecommended($id);
+        $this->insertIntoRecommended($id, $request->has('recommended'));
 
         return redirect()->route('products')->with(['success' => 'Продукт оновлено 🍻']);
     }
 
-    public function insertIntoRecommended($product_id)
+    private function attachPhoto(int $productId, ProductRequest $request) : void
+    {
+        $previousImages = Image::whereProductId($productId);
+        foreach ($previousImages->get() as $image) {
+            File::delete(public_path($image->title));
+        }
+        $previousImages->delete();
+
+        foreach (File::files(public_path($request->image)) as $file) {
+            $filePath = public_path($this->saveFileDirectory.$file->getFilename());
+            File::move($file, $filePath);
+            Image::create(['title' => $this->saveFileDirectory.$file->getFilename(), 'product_id' => $productId]);
+        }
+
+        rmdir(public_path($request->image));
+    }
+
+    public function insertIntoRecommended(int $product_id, bool $recommended)
     {
         $row = RecommendedProducts::where('product_id', $product_id)->first();
 
-        if (request()->has('recommended')) {
+        if ($recommended) {
             if (is_null($row)) {
                 RecommendedProducts::create(['product_id' => $product_id]);
             }

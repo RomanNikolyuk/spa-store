@@ -11,7 +11,7 @@
 
                 <x-success-message/>
 
-                @if($products->count() < 8)
+                @if($products->count() < 8 && !request('search'))
                     <div class="bg-red-300 border-t-4 border-red-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
                          role="alert">
                         <div class="flex">
@@ -140,12 +140,12 @@
                             <div>
                                 <p class="text-sm leading-5 text-blue-700">
                                     Показуємо від
-                                    <span class="font-medium">{{ $products->first()->id }}</span>
-                                    до
                                     <span class="font-medium">{{ $products->last()->id }}</span>
+                                    до
+                                    <span class="font-medium">{{ $products->first()->id }}</span>
                                     із
                                     <span class="font-medium">{{ $products->count() }}</span>
-                                    замовлень
+                                    продуктів
                                 </p>
                             </div>
                             <div>

@@ -72,6 +72,17 @@ class Product extends Model
                 }
             };
         }*/
+
+    public function delete()
+    {
+        foreach ($this->images()->get() as $image) {
+            $image->product_id = 0;
+            $image->save();
+        }
+
+        return parent::delete();
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -79,13 +90,11 @@ class Product extends Model
 
     public function getCategoryNameAttribute()
     {
-        $searched_cat = Category::find($this->category_id);
-
-        if ($searched_cat->parent_id !== 0) {
-            $parent_cat = Category::find($searched_cat->parent_id);
-            $output = $parent_cat->title . ' -> ' . $searched_cat->title;
+        if ($this->category->parent_id !== 0) {
+            $parent_cat = Category::find($this->category->parent_id);
+            $output = $parent_cat->title . ' -> ' . $this->category->title;
         } else {
-            $output = $searched_cat->title;
+            $output = $this->category->title;
         }
 
         return $output;

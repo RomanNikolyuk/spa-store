@@ -10,6 +10,9 @@
         </h2>
     </x-slot>
 
+    @section('styles')
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    @endsection
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -63,7 +66,7 @@
                             <div class="w-full mb-8">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                        for="grid-password">
-                                    Картинка (якщо на головну)
+                                    Картинка (330х299) (якщо на головну)
                                 </label>
                                 <div class="w-full mb-8">
                                     <label
@@ -73,15 +76,12 @@
                                             <path
                                                 d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/>
                                         </svg>
-                                        <span class="mt-2 text-base leading-normal">Виберіть картинку</span>
+                                        <span class="mt-2 text-base leading-normal">Завантажити</span>
                                         <input type='file' class="hidden" name="image">
                                     </label>
                                 </div>
 
                             </div>
-
-
-
 
                         </div>
 

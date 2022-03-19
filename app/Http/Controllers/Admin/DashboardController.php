@@ -10,8 +10,8 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $orders = Order::orderBy('updated_at', 'desc')->paginate(15);
-        $orders->newCount = Order::where('status', 1)->count();
+        $orders = Order::orderBy('updated_at', 'desc')->with('products')->paginate(15);
+        $orders->newCount = $orders->where('status', 1)->count();
 
         return view('dashboard.dashboard')->with('orders', $orders);
     }
