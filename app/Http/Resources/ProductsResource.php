@@ -21,6 +21,8 @@ class ProductsResource extends JsonResource
             'category_id' => $this->category_id,
             'big_desc' => $this->big_desc,
             'price' => $this->price,
+            'reviews' => $this->reviews,
+            'related' => $this->related,
             'images' => $this->images,
             'image' => $this->images[0] ?? null
         ];

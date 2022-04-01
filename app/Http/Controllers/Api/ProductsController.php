@@ -83,7 +83,7 @@ class ProductsController extends Controller
             $product->categories = $categories;
             $product->reviews = [];
 
-            return ProductsResource::collection(collect($product)->paginate($this->maxProductPerPage));
+            return new ProductsResource($product);
         });
     }
 
@@ -151,7 +151,7 @@ class ProductsController extends Controller
             array_push($return, ...$products);
         }
 
-        return ProductsResource::collection(collect($return)->paginate($this->maxProductPerPage));
+        return ProductsResource::collection($return);
     }
 
     private function getSearchedProducts(string $search, int $page)
