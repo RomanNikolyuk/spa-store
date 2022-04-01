@@ -64,7 +64,7 @@ class ProductsController extends Controller
     {
         abort_if(!$request->hasFile('image'), 400);
 
-        $folder = $this->saveTmpDirectory . now()->timestamp;
+        $folder = $this->saveTmpDirectory . now()->toDateString();
 
         $request->image->move(public_path($folder), uniqid() . '.' . $request->image->getClientOriginalExtension());
 
@@ -90,6 +90,7 @@ class ProductsController extends Controller
     private function attachPhoto(int $productId, ProductRequest $request) : void
     {
         $previousImages = Image::whereProductId($productId);
+
         foreach ($previousImages->get() as $image) {
             File::delete(public_path($image->title));
         }
