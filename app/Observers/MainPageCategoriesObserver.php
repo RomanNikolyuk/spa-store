@@ -26,6 +26,7 @@ class MainPageCategoriesObserver
      */
     public function updated(MainPageCategory $mainPageCategory)
     {
+        Cache::forget('mainPageCategories');
     }
 
     /**

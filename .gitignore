@@ -14,3 +14,4 @@ yarn-error.log
 .idea
 README.md
 public/images/products
+bootstrap/cache
