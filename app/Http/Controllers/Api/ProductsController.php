@@ -42,7 +42,9 @@ class ProductsController extends Controller
     public function viewOne(Request $request)
     {
         return Cache::rememberForever('product-' . $request->id, function () use ($request) {
-            $product = Product::find($request->id);
+            $product = Product::whereId($request->id)->firstOr(function () {
+                abort(response()->json(new \stdClass()));
+            });
 
             // Getting Related Products
             $related = Product::where('category_id', $product->category_id)
