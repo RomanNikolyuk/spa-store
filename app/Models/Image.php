@@ -33,7 +33,7 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slider_id', 'category_id', 'product_id'];
+    protected $fillable = ['title', 'slider_id', 'category_id', 'product_id', 'image'];
 
     public static function put(object $image, int $id, string $type): string
     {

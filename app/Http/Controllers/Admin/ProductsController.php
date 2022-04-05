@@ -87,23 +87,7 @@ class ProductsController extends Controller
         return redirect()->route('products')->with(['success' => 'Продукт оновлено 🍻']);
     }
 
-    private function attachPhoto(int $productId, ProductRequest $request) : void
-    {
-        $previousImages = Image::whereProductId($productId);
 
-        foreach ($previousImages->get() as $image) {
-            File::delete(public_path($image->title));
-        }
-        $previousImages->delete();
-
-        foreach (File::files(public_path($request->image)) as $file) {
-            $filePath = public_path($this->saveFileDirectory.$file->getFilename());
-            File::move($file, $filePath);
-            Image::create(['title' => $this->saveFileDirectory.$file->getFilename(), 'product_id' => $productId]);
-        }
-
-        rmdir(public_path($request->image));
-    }
 
     public function insertIntoRecommended(int $product_id, bool $recommended)
     {
@@ -128,7 +112,25 @@ class ProductsController extends Controller
         return redirect()->route('products')->with(['success' => 'Успішно Видалено']);
     }
 
-    protected function getCategoriesArr(): array
+    private function attachPhoto(int $productId, ProductRequest $request) : void
+    {
+        $previousImages = Image::whereProductId($productId);
+
+        foreach ($previousImages->get() as $image) {
+            File::delete(public_path($image->title));
+        }
+        $previousImages->delete();
+
+        foreach (File::files(public_path($request->image)) as $file) {
+            $filePath = public_path($this->saveFileDirectory.$file->getFilename());
+            File::move($file, $filePath);
+            Image::create(['title' => $this->saveFileDirectory.$file->getFilename(), 'product_id' => $productId]);
+        }
+
+        rmdir(public_path($request->image));
+    }
+
+    private function getCategoriesArr(): array
     {
         $categories = Category::all();
 

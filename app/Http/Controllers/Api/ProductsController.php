@@ -30,10 +30,10 @@ class ProductsController extends Controller
         string|null $search,
         string|null $orderBy,
     ) {
-        if (is_null($search)) {
-            $products = $this->getCategoryProducts($category, $page, $orderBy);
-        } else {
+        if (!is_null($search)) {
             $products = $this->getSearchedProducts($search, $page);
+        } else {
+            $products = $this->getCategoryProducts($category, $page, $orderBy);
         }
 
         return $products;
@@ -50,25 +50,13 @@ class ProductsController extends Controller
             $related = Product::where('category_id', $product->category_id)
                 ->where('id', 'NOT LIKE', $product->id)
                 ->limit(4)
-                ->get()
-                ->reduce(function ($arr, $item) {
-                    if (!empty($item->images)) {
-                        $item->image = $item->images[0];
-                    }
-
-                    $arr[] = $item;
-                    return $arr;
-                });
+                ->get();
 
             if (is_null($related)) {
-                $related = Product::all()->random(4);
-
-                foreach ($related as $value) {
-                    if (!empty($value->images)) {
-                        $value->image = $value->images[0];
-                    }
-                }
+                $related = Product::inRandomOrder()->limit(4)->get();
             }
+
+            $related = ProductsResource::collection($related);
 
             $product->related = $related;
             $category = $product->category;
@@ -160,16 +148,6 @@ class ProductsController extends Controller
     {
         $products = Product::where('title', 'LIKE', "%$search%")->get();
 
-        foreach ($products as $product) {
-            $product->image = $product->images;
-
-            if (!empty($product->image)) {
-                $product->image = $product->image[0];
-            }
-
-            $ready_products[] = $product;
-        }
-
-        return ProductsResource::collection($ready_products ?? []);
+        return ProductsResource::collection($products);
     }
 }

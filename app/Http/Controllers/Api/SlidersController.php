@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SlidersResource;
 use App\Models\Slider;
 
 class SlidersController extends Controller
@@ -11,10 +12,6 @@ class SlidersController extends Controller
     {
         $sliders = Slider::get();
 
-        foreach ($sliders as $slider) {
-            $slider->image = $slider->img->title;
-        }
-
-        return $sliders;
+        return SlidersResource::collection($sliders);
     }
 }

@@ -36,7 +36,7 @@ class Slider extends Model
 
     protected $fillable = ['small_text_1', 'small_text_2', 'big_text', 'button_text', 'url'];
 
-    public function img()
+    public function image()
     {
         return $this->hasOne(Image::class);
     }
