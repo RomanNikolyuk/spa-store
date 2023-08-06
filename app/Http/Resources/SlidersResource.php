@@ -20,7 +20,7 @@ class SlidersResource extends JsonResource
             'big_text' => $this->big_text,
             'button_text' => $this->button_text,
             'url' => $this->url,
-            'image' => $this->image->title
+            'image' => $this->image?->title
         ];
     }
 }
