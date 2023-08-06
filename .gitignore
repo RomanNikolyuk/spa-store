@@ -52,7 +52,7 @@ RELEASE_NOTES.txt
 .ssh/
 error_log
 .htpasswds
-/.htaccess
+.htaccess
 php.ini.sample
 .modgit/
 _vti_bin/
