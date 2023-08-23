@@ -4,7 +4,7 @@ import AddToWishlistImage from './addToWishlist.webp';
 
 import RemoveFromWishlistImage from './removeFromWishlist.webp';
 
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {productDetailsLoading} from "../../actions/actions";
 import {connect} from 'react-redux';
@@ -16,7 +16,7 @@ const Product = ({item, productDetailsLoading, onAddToCart, isInCart, onAddToWis
         backgroundImage: `url(${image})`
     };
 
-    const history = useHistory();
+    const history = useNavigate();
 
     const viewItem = () => {
         productDetailsLoading();

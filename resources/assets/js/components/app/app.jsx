@@ -4,8 +4,8 @@ import Footer from "../layouts/footer";
 
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
-import './css2.css';
-import './bootstrap.min.css+font-awesome.min.css+elegant-icons.css+magnific-popup.css+nice-select.css+owl.carousel.min.css+slicknav.min.css+style.css.pagespeed.cc.BU1uaYcpbk.css';
+import '../../../css/app.css';
+// import './bootstrap.min.css+font-awesome.min.css+elegant-icons.css+magnific-popup.css+nice-select.css+owl.carousel.min.css+slicknav.min.css+style.css.pagespeed.cc.BU1uaYcpbk.css';
 
 import MainPage from "../mainPage";
 import Catalog from "../catalog";

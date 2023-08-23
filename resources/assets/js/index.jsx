@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from "./components/app";
 import RequestManagerContext from "./components/requestManagerContext";
 
-import RequestManager from "./components/requestManager";
+import RequestManager from "./components/requestManager/requestManager";
 
 const requestManager = new RequestManager();
 

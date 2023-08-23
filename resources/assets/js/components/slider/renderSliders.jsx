@@ -10,7 +10,7 @@ const RenderSliders = ({sliders}) => {
         const {id, small_text_1, big_text, small_text_2, url, button_text, image} = slider;
 
         return (
-            <div className='owl-item cloned' style={slideStyle} key={id}>
+            <div className='owl-item' style={slideStyle} key={id}>
                 <div className="hero__items set-bg" data-setbg={image}
                      style={{backgroundImage: `url(${image})`}}>
                     <div className="container">
