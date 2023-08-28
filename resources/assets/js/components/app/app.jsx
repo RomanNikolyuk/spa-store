@@ -1,51 +1,59 @@
-import React from 'react';
-import Menu from "../layouts/menu";
-import Footer from "../layouts/footer";
+import { Provider } from 'react-redux';
+import { Route, BrowserRouter as Router, Routes, useParams } from 'react-router-dom';
 
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import store from '../../store';
+import CartRenderer from '../cartRenderer';
+import Catalog from '../catalog';
+import Footer from '../layouts/footer';
+import Menu from '../layouts/menu';
+import MainPage from '../mainPage';
+import Order from '../order';
+import ViewProductDetails from '../viewProductDetails';
+import WishlistRenderer from '../wishlistRenderer';
 
-import '../../../css/app.css';
-// import './bootstrap.min.css+font-awesome.min.css+elegant-icons.css+magnific-popup.css+nice-select.css+owl.carousel.min.css+slicknav.min.css+style.css.pagespeed.cc.BU1uaYcpbk.css';
+function CatalogWrapper() {
+    const { megaCategory, smallCategory } = useParams();
+    return <Catalog categories={ { megaCategory, smallCategory } } />;
+}
 
-import MainPage from "../mainPage";
-import Catalog from "../catalog";
-import {Provider} from "react-redux";
-import store from "../../store";
-import ViewProductDetails from "../viewProductDetails";
-import CartRenderer from "../cartRenderer";
-import WishlistRenderer from "../wishlistRenderer";
-import Order from "../order";
+function ViewProductDetailsWrapper() {
+    const { id } = useParams();
+    return <ViewProductDetails productId={ id } />;
+}
 
 const App = () => {
     return (
-        <Provider store={store}>
+        <Provider store={ store }>
             <Router>
-                <Menu/>
-
-                <Route path='/' component={MainPage} exact={true}/>
-
-                <Route path='/catalog/:megaCategory?/:smallCategory?' component={({match}) => {
-
-                    return <Catalog categories={match.params} />
-
-                }} exact={true}/>
-
-                <Route path='/item/:id' component={({match}) => {
-
-                    return <ViewProductDetails productId={match.params.id}/>;
-
-                }} exact={true}/>
-
-                <Route path='/cart' component={CartRenderer}/>
-
-                <Route path='/wishlist' component={WishlistRenderer}/>
-
-                <Route path='/order' component={Order}/>
-
-                <Footer/>
+                <Menu />
+                <Routes>
+                    <Route
+                        path="/"
+                        element={ <MainPage /> }
+                    />
+                    <Route
+                        path="/catalog/:megaCategory?/:smallCategory?"
+                        element={ <CatalogWrapper /> }
+                    />
+                    <Route
+                        path="/item/:id"
+                        element={ <ViewProductDetailsWrapper /> }
+                    />
+                    <Route
+                        path="/cart"
+                        element={ <CartRenderer /> }
+                    />
+                    <Route
+                        path="/wishlist"
+                        element={ <WishlistRenderer /> }
+                    />
+                    <Route
+                        path="/order"
+                        element={ <Order /> }
+                    />
+                </Routes>
+                <Footer />
             </Router>
-
-
         </Provider>
     );
 };

@@ -1,20 +1,19 @@
 {
+  "css/app.css": {
+    "file": "app.48dbd69c.css",
+    "isEntry": true,
+    "src": "css/app.css"
+  },
   "fonts/ElegantIcons.woff": {
     "file": "ElegantIcons.be1825e5.woff",
     "src": "fonts/ElegantIcons.woff"
   },
-  "js/index.css": {
-    "file": "index.b1b15bac.css",
-    "src": "js/index.css"
+  "fonts/fontawesome-webfont.woff2": {
+    "file": "fontawesome-webfont.2adefcbc.woff2",
+    "src": "fonts/fontawesome-webfont.woff2"
   },
   "js/index.jsx": {
-    "assets": [
-      "ElegantIcons.be1825e5.woff"
-    ],
-    "css": [
-      "index.b1b15bac.css"
-    ],
-    "file": "index.1786d61a.js",
+    "file": "main.f381cba4.js",
     "isEntry": true,
     "src": "js/index.jsx"
   }

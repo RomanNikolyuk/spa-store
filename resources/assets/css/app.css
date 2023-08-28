@@ -9917,7 +9917,7 @@ a.text-dark:focus,a.text-dark:hover {
  */
 @font-face {
     font-family: "FontAwesome";
-    src: url(/static/media/fontawesome-webfont.fb685a7c.woff2) format("woff2");
+    src: url('./../fonts/fontawesome-webfont.woff2') format("woff2");
     font-weight: 400;
     font-style: normal
 }

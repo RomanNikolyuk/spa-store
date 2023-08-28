@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Завантаження...</title>
-{{--    <link href="{{ static_rev('js/index.css') }}" rel="stylesheet">--}}
+    <link href="{{ static_rev('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <noscript>Увімкніть JS та перезавантажте сторінку!</noscript>
@@ -21,6 +21,10 @@
 <script src="https://preview.colorlib.com/theme/malefashion/js/jquery.nicescroll.min.js"></script>
 <script src="https://preview.colorlib.com/theme/malefashion/js/jquery.slicknav.js"></script>
 <script src="{{ static_rev('js/index.jsx') }}"></script>
+
+<script>
+    window.__manifest = {!! file_get_contents(public_path('/static/manifest.json')) !!}
+</script>
 {{--<script async="" src="public/js/js.js"></script>--}}
 {{--<script>!function (e) {
         function r(r) {
