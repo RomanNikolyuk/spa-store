@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductsResource;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\RecommendedProducts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+
+use App\{
+    Models\Category,
+    Models\Product,
+    Models\RecommendedProducts
+};
+use App\Http\{
+    Controllers\Controller,
+    Resources\ProductsResource
+};
 
 class ProductsController extends Controller
 {
@@ -101,7 +106,7 @@ class ProductsController extends Controller
             }
 
             // New products
-            $newProducts = Product::limit(8)->orderBy('id', 'DESC')->get();
+            $newProducts = Product::limit(8)->latest()->get();
             foreach ($newProducts as $newProduct) {
                 $newProduct->image = $newProduct->images ? $newProduct->images[0] : null;
 

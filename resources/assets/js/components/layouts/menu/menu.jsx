@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import CartImg from '@images/cart.webp';
+import HeartImg from '@images/heart.webp';
+import LogoImg from '@images/logo.png';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { clearItems, menuCategoriesLoaded, menuSelected, setTotalValue } from '../../../actions/actions';
-import { static_rev } from '../../../utils/helpers';
 import WithRequestManager from '../../withRequestManager';
-import LogoImg from '../logo.png';
-
-import HeartImg from './../../../../images/heart.webp';
-import CartImg from './cart.png';
 
 class Menu extends Component {
     constructor(props) {
@@ -180,6 +178,7 @@ class Menu extends Component {
                                     <a href="/"><img
                                         src={ LogoImg }
                                         alt="На головну"
+                                        height="50px"
                                     />
                                     </a>
                                 </div>
@@ -202,11 +201,11 @@ class Menu extends Component {
 
                                     { /*<a href="#" className="search-switch"><img src={SearchImg} alt="Пошук"/></a>*/ }
 
-                                    { /*<Link to="/wishlist"><img
+                                    <Link to="/wishlist"><img
                                         src={ HeartImg }
                                         alt="Список бажань"
                                     />
-                                    </Link>*/ }
+                                    </Link>
 
                                     <RenderCartButtons />
 

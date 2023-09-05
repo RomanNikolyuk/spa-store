@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
             };
         case 'CATALOG_MENU_LOADED':
             return {
-                ...state, loading: false, items: [...state.items, ...action.payload], catalogPage: state.catalogPage + 1, cachedProducts: [...state.cachedProducts, ...action.payload]
+                ...state, loading: false, items: [ ...state.items, ...action.payload ], catalogPage: state.catalogPage + 1, cachedProducts: [ ...state.cachedProducts, ...action.payload ]
             };
         case 'CATEGORY_SELECTED':
             return {
@@ -71,19 +71,19 @@ const reducer = (state = initialState, action) => {
             };
         case 'PRODUCT_DETAILS_LOADED':
             return {
-                ...state, loading: false, item: action.payload, cachedProducts: [...state.cachedProducts, action.payload]
+                ...state, loading: false, item: action.payload, cachedProducts: [ ...state.cachedProducts, action.payload ]
             };
         case 'PRODUCT_ADDED_TO_CART':
             return {
                 ...state, rerender: !state.rerender
             };
-        case "CART_PRODUCTS_REQUESTED":
+        case 'CART_PRODUCTS_REQUESTED':
             return {
                 ...state, loading: true
             };
         case 'CART_PRODUCTS_LOADED':
             return {
-                ...state, loading: false, cartProducts: action.payload.items, total: action.payload.total, cachedProducts: [...state.cachedProducts, ...action.payload.items]
+                ...state, loading: false, cartProducts: action.payload.items, total: action.payload.total, cachedProducts: [ ...state.cachedProducts, ...action.payload.items ]
             };
         case 'CLEAR_ITEMS':
             return {
@@ -95,13 +95,13 @@ const reducer = (state = initialState, action) => {
             };
         case 'WISHLIST_LOADED':
             return {
-                ...state, loading: false, wishlistProducts: action.payload, cachedProducts: [...state.cachedProducts, ...action.payload]
+                ...state, loading: false, wishlistProducts: action.payload, cachedProducts: [ ...state.cachedProducts, ...action.payload ]
             };
 
         case 'WISHLIST_ADDED':
             return {
-                ...state, rerender: !state.rerender, loading: false,
-            }
+                ...state, rerender: !state.rerender, loading: false
+            };
         case 'WISHLIST_EMPTY':
             return {
                 ...state, items: [], rerender: !state.rerender, loading: false
@@ -125,8 +125,8 @@ const reducer = (state = initialState, action) => {
             };
         case 'MAIN_PAGE_PRODUCTS_LOADED':
             return {
-                ...state, loading: false, mainPageProducts: action.payload, cachedProducts: [...state.cachedProducts, ...action.payload]
-            }
+                ...state, loading: false, mainPageProducts: action.payload, cachedProducts: [ ...state.cachedProducts, ...action.payload ]
+            };
         case 'MAIN_PAGE_CATEGORIES_REQUESTED':
             return {
                 ...state, loading: true
@@ -147,7 +147,7 @@ const reducer = (state = initialState, action) => {
             };
         case 'ORDER_PRODUCTS_LOADED':
             return {
-                ...state, items: action.payload, loading: false,
+                ...state, items: action.payload, loading: false
             };
         case 'ORDER_SENDED':
             return {
@@ -159,7 +159,7 @@ const reducer = (state = initialState, action) => {
             };
         case 'CATALOG_SET_ORDER_BY':
             return {
-                ...state, catalogOrderBy: action.payload,
+                ...state, catalogOrderBy: action.payload
             };
         default:
             return state;

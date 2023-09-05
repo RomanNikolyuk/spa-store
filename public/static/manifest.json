@@ -1,6 +1,6 @@
 {
   "css/app.css": {
-    "file": "app.48dbd69c.css",
+    "file": "app.a89cab07.css",
     "isEntry": true,
     "src": "css/app.css"
   },
@@ -12,8 +12,20 @@
     "file": "fontawesome-webfont.2adefcbc.woff2",
     "src": "fonts/fontawesome-webfont.woff2"
   },
+  "images/logo-white.png": {
+    "file": "logo-white.5232672e.png",
+    "src": "images/logo-white.png"
+  },
+  "images/logo.png": {
+    "file": "logo.09ce85a4.png",
+    "src": "images/logo.png"
+  },
   "js/index.jsx": {
-    "file": "main.f381cba4.js",
+    "assets": [
+      "logo-white.5232672e.png",
+      "logo.09ce85a4.png"
+    ],
+    "file": "main.3b03f301.js",
     "isEntry": true,
     "src": "js/index.jsx"
   }

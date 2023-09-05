@@ -1,7 +1,5 @@
-import React from 'react';
-
-import LogoImg from '../logo.png';
-import {Link} from "react-router-dom";
+import LogoImg from '@images/logo-white.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 
@@ -14,10 +12,11 @@ const Footer = () => {
                         <div className="footer__about">
                             <div className="footer__logo">
                                 <a href="#"><img
-                                    src={LogoImg} alt="Логотип"
+                                    src={ LogoImg } alt="Логотип"
+                                    height="50px"
                                 /></a>
                             </div>
-                            <p>Цей магазин - зразок любові та поваги до Вас! ❤</p>
+                            <p>Магазин церковних товарів у місті Луцьк</p>
 
                         </div>
                     </div>
@@ -25,8 +24,8 @@ const Footer = () => {
                         <div className="footer__widget">
                             <h6>Магазин</h6>
                             <ul>
-                                <li><Link to='/cart'>Корзина</Link></li>
-                                <li><Link to='/wishlist'>Список бажань</Link></li>
+                                <li><Link to="/cart">Корзина</Link></li>
+                                <li><Link to="/wishlist">Список бажань</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -39,18 +38,20 @@ const Footer = () => {
                             </ul>
                         </div>
                     </div>
-                    <div/>
+                    <div />
                 </div>
                 <div className="row">
                     <div className="col-lg-12 text-center">
                         <div className="footer__copyright__text">
-                            <p>Copyright © 2022
-                                Всі права захищено | Site created by <a href="https://t.me/vl_st1"
-                                                                        target="_blank" rel='noreferrer'>Roman</a>
+                            <p>Copyright © { new Date().getFullYear() } |
+                                Всі права захищено | Site created by <a
+                                href="https://t.me/vl_st1"
+                                target="_blank" rel="noreferrer"
+                                >Roman</a>
                             </p>
                         </div>
                     </div>
-                    <div/>
+                    <div />
                 </div>
 
             </div>
