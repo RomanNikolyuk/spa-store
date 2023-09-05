@@ -85,3 +85,4 @@ Homestead.json
 storage/*.key
 /public/storage
 /public/images
+/bootstrap/cache
